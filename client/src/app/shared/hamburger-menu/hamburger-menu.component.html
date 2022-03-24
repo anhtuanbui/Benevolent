@@ -1,0 +1,24 @@
+<button mat-button [matMenuTriggerFor]="animals"><mat-icon>menu</mat-icon></button>
+<mat-menu #animals="matMenu">
+  <button mat-menu-item><a class="full-hw" [routerLink]="['']">Home</a></button>
+  <button mat-menu-item [matMenuTriggerFor]="services">Services</button>
+  <button mat-menu-item [matMenuTriggerFor]="about">About Us</button>
+  <button mat-menu-item><a class="full-hw" href="#contact">Contact Us</a></button>
+  <button class="bg-orange-tint" mat-menu-item><a href="tel:1800 236 762" class="btn-call-us">Call us 1800 236 762</a></button>
+</mat-menu>
+
+<mat-menu #services="matMenu">
+  <button mat-menu-item>Birds</button>
+  <button mat-menu-item>Mammals</button>
+</mat-menu>
+
+<mat-menu #about="matMenu">
+  <button mat-menu-item>Insects</button>
+  <button mat-menu-item>Molluscs</button>
+  <button mat-menu-item>Crustaceans</button>
+  <button mat-menu-item>Corals</button>
+  <button mat-menu-item>Arachnids</button>
+  <button mat-menu-item>Velvet worms</button>
+  <button mat-menu-item>Horseshoe crabs</button>
+</mat-menu>
+

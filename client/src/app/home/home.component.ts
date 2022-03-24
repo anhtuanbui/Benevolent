@@ -5,6 +5,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  HostListener,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -44,11 +45,17 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
   @ViewChild('sliderRef') sliderRef?: ElementRef<HTMLElement>;
 
+  TABLET_BREAKPOINT = 960;
+  PHONE_BREAKPOINT = 480;
+ 
+  innerWidth: any;
+
   slider?: KeenSliderInstance;
 
   currentSlide: number = 1;
   dotHelper: Array<Number> = [];
 
+  viewInKeenSlider:number = 3;
 
   cards: string[] = [
     'Translating services',
@@ -61,6 +68,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor() {}
   ngAfterViewInit(): void {
+    
+    if (this.innerWidth < this.PHONE_BREAKPOINT){
+      this.viewInKeenSlider = 1;
+    } else if (this.innerWidth < this.TABLET_BREAKPOINT) {
+      this.viewInKeenSlider = 2;
+    } else {
+      this.viewInKeenSlider = 3
+    }
     setTimeout(() => {
       this.slider = new KeenSlider(
         this.sliderRef!.nativeElement,
@@ -72,7 +87,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           loop: true,
           mode: 'free-snap',
           slides: {
-            perView: 3,
+            perView: this.viewInKeenSlider,
             spacing: 15,
           },
         },
@@ -115,6 +130,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.addMatchHeight();
+    this.innerWidth = window.innerWidth;
   }
 
   ngOnDestroy(): void {
@@ -141,4 +157,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       item.style.height = height + 'px';
     });
   }
+
+  // set window size to innerWidth
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {
+    this.innerWidth = window.innerWidth;
+    
+    console.log(this.viewInKeenSlider);
+
+  }
+
 }

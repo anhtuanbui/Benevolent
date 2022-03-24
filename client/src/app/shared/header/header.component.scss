@@ -22,15 +22,41 @@ li {
     z-index: -100;
   }
 
+  ul {
+    position: absolute;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+    padding-right: 0;
+    display: none;
+
+    li {
+      a {
+        width: 240px;
+        padding: 15px;
+        font-size: 18px;
+        color: white;
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
   &:hover {
     .nav-item-background {
       height: 100%;
+    }
+
+    ul {
+      opacity: 1;
+      display: block;
     }
   }
 }
 
 .header {
-    border-bottom: 1px solid $border-bottom-color;
+  border-bottom: 1px solid $border-bottom-color;
 }
 
 .header-wrap {

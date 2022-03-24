@@ -145,6 +145,13 @@ $slide-show-height: 600px;
   }
 }
 
+// Responsive for video container and information
+
+.section-container {
+  display: flex;
+  padding: 80px 0;
+}
+
 .welcome-video-wrap {
   width: calc(50% - 10px);
   margin-right: 10px;
@@ -171,14 +178,13 @@ $slide-show-height: 600px;
   margin-left: 10px;
   width: calc(50% - 10px);
 
+  h1 {
+    text-align: center;
+  }
+
   h3 {
     margin-top: 0;
   }
-}
-
-.section-container {
-  display: flex;
-  padding: 80px 0;
 }
 
 .scroll-horizontal-box {
@@ -337,7 +343,7 @@ $slide-show-height: 600px;
     align-items: flex-start;
   }
 
-  label {
+  label{
     width: 45%;
     display: block;
   }
@@ -389,5 +395,56 @@ $slide-show-height: 600px;
 
   .swiper-pagination-bullet-active {
     background-color: $slideshow-bullet-active-color;
+  }
+}
+
+@media (max-width: 1080px) {
+  .welcome {
+    padding-top: 20px;
+    padding-bottom: 30px;
+  }
+
+  .welcome-video-wrap {
+    margin-right: 0;
+    width: 100%;
+    padding: 30px 0;
+  }
+
+  .section-container {
+    display: unset;
+  }
+
+  .section-info {
+    width: 100%;
+    margin-left: 0;
+    box-sizing: border-box;
+  }
+
+  .about {
+    margin: 30px 0;
+  }
+
+  .contact-form-field {
+    width: 100% !important; 
+
+    label, button {
+      margin-left: 20px;
+    }
+
+    input, textarea {
+      margin-right: 20px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-container {
+    h1 {
+      font-size: 1.8em;
+    }
+  }
+
+  .about {
+    width: 100%;
   }
 }

@@ -1,7 +1,9 @@
 <div class="header">
   <div class="header-wrap container">
     <a href="/"><img class="logo" src="/assets/images/LogoFull.png" /></a>
-    <div class="navigation">
+
+    <!-- This div appears if the screen is bigger or equal to 1300 -->
+    <div class="navigation" *ngIf="innerWidth >= BREAK_POINT_1">
       <ul>
         <li>
           <div
@@ -14,23 +16,49 @@
         <li>
           <div class="nav-item-background bg-orange"></div>
           <a href="#">Services</a>
+
+          <ul class="bg-orange">
+            <li>
+              <a target="_blank" href="https://www.benevolent.org.au/about-us"
+                >Translating services</a
+              >
+            </li>
+          </ul>
         </li>
         <li>
           <div class="nav-item-background bg-pink"></div>
           <a target="_blank" href="https://www.benevolent.org.au/about-us"
             >About Us</a
           >
+          <ul class="bg-pink">
+            <li>
+              <a target="_blank" href="https://www.benevolent.org.au/about-us"
+                >Our commitment to your safety and wellbeing.</a
+              >
+            </li>
+            <li>
+              <a target="_blank" href="https://www.benevolent.org.au/about-us"
+                >Your right and responsibilities</a
+              >
+            </li>
+            <li>
+              <a target="_blank" href="https://www.benevolent.org.au/about-us"
+                >Our Commitment to LGBTQI+ community</a
+              >
+            </li>
+          </ul>
         </li>
         <li>
           <div class="nav-item-background bg-blue"></div>
-          <a
-            target="_blank"
-            href="https://www.benevolent.org.au/contact-us/general-enquiries"
-            >Contact Us</a
-          >
+          <a href="#contact">Contact Us</a>
         </li>
       </ul>
       <bnv-call-btn></bnv-call-btn>
+    </div>
+
+    <!-- This div appears when the screen is smaller than 1300 -->
+    <div *ngIf="innerWidth < BREAK_POINT_1">
+      <bnv-hamburger-menu></bnv-hamburger-menu>
     </div>
   </div>
 </div>

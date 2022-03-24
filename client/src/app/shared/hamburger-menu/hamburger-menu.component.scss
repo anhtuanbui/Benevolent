@@ -1,0 +1,13 @@
+@import "../../shared/colors.scss";
+
+.btn-call-us {
+  display: block;
+}
+
+.bg-orange-tint {
+  background-color: $orange-tint;
+
+  &:hover{
+      background-color: $orange-tint-tinted;
+  }
+}

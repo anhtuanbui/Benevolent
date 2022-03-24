@@ -27,3 +27,17 @@ a {
         margin-right: 20px;
     }
 }
+
+@media (max-width: 800px) {
+    li {
+        padding: 5px 10px;
+    }
+    .footer-wrap {
+        display: unset;
+        text-align: center;
+    }
+
+    .footer {
+        padding: 10px 0;
+    }
+}
