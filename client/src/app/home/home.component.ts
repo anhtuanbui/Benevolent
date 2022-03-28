@@ -151,7 +151,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   cardHeightCalc() {
-    const cards = document.querySelectorAll<HTMLElement>('.grid-card');
+    const cards = document.querySelectorAll<HTMLElement>('.scroll-box-card');
     cards.forEach((item) => {
       let height = (item.offsetWidth * 320) / 420;
       item.style.height = height + 'px';
@@ -162,9 +162,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   @HostListener('window:resize', ['$event'])
   onResize(event:any) {
     this.innerWidth = window.innerWidth;
-    
-    console.log(this.viewInKeenSlider);
-
   }
 
 }

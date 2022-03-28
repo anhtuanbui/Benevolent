@@ -1,1 +1,44 @@
-<p>info-page works!</p>
+<div class="container page-info-box">
+  <div class="info-box">
+    <div class="page-info-left">
+      <img src="/assets/images/grid-card5.jpg" alt="demo image" />
+
+      <div class="page-info">
+        <h1>Translating service</h1>
+        <div>
+          <p>
+            If English is not your first language, you can have an interpreter.
+          </p>
+
+          <p>You can do this by</p>
+          <ul>
+            <ol>
+              - Calling our Support Centre in 180 236 762, and ask for an
+              interpreter,
+            </ol>
+            <ol>
+              - Call ‘TIS’ (Translating and Interpreting service) on 131 450 and
+              they can put you through to us.
+            </ol>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- set breakpoint at 640 -->
+    <div class="page-info-right" *ngIf="innerWidth > 800">
+      <h2>Categories</h2>
+      <p>Our commitment to your safety and well being</p>
+      <p>Your right and responsibilities</p>
+    </div>
+  </div>
+
+  <div class="other-topics" *ngIf="innerWidth >= 1060">
+    <h1>Other topics</h1>
+    <div class="other-topics-cards">
+      <bnv-card></bnv-card>
+      <bnv-card></bnv-card>
+      <bnv-card></bnv-card>
+    </div>
+  </div>
+</div>

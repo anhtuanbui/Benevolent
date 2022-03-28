@@ -1,0 +1,57 @@
+@import "../colors.scss";
+@import "../functions.scss";
+
+.scroll-box-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  width: 100%;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .scroll-box-card-textbox {
+    bottom: 0;
+    display: flex;
+    flex-flow: wrap;
+    height: 3.8rem;
+    width: 100%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    transition: height 0.8s ease-in-out, background-color 1s ease-in-out;
+
+    button {
+      opacity: 0;
+      font-size: 0.8rem;
+      padding: 3px 20px;
+      font-weight: 400;
+      transition: background-color 0.25s ease-in-out, opacity 0.8s ease-in-out;
+
+      &:hover {
+        background-color: $orange-tint-tinted;
+      }
+    }
+
+    p {
+      margin: 0;
+      text-align: center;
+      padding: 10px;
+      width: 100%;
+    }
+  }
+  &:hover {
+    .scroll-box-card-textbox {
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+
+      button {
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -10,6 +10,6 @@ import { CardComponent } from './card/card.component';
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, CallBtnComponent, HamburgerMenuComponent, CardComponent],
   imports: [CommonModule, MaterialModule],
-  exports: [HeaderComponent, FooterComponent, MaterialModule, CallBtnComponent],
+  exports: [HeaderComponent, FooterComponent, MaterialModule, CallBtnComponent, CardComponent],
 })
 export class SharedModule {}
