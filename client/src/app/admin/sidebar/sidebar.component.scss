@@ -1,0 +1,23 @@
+@import "../../shared/colors.scss";
+
+.side-bar {
+  width: 280px;
+  border-right: 1px solid $border-bottom-color;
+
+  h2 {
+    padding: 5px;
+    text-align: center;
+  }
+
+  a {
+    display: block;
+    padding: 5px;
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+
+    &:hover {
+      border-bottom: 1px solid $border-bottom-color;
+      border-top: 1px solid $border-bottom-color;
+    }
+  }
+}
