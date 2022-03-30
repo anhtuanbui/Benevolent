@@ -7,13 +7,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InfoPageComponent } from './info-page/info-page.component';
-import { PageComponent } from './page/page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InfoPageComponent,
-    PageComponent,
   ],
   imports: [
     BrowserModule,

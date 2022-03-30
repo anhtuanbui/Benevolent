@@ -4,8 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
-  { path: '', component: AdminComponent },
-  { path: 'pages', component: PagesComponent },
+  {
+    path: '',
+    component: AdminComponent,
+    children: [{ path: 'pages', component: PagesComponent }],
+  },
 ];
 
 @NgModule({
