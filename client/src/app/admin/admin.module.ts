@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,16 +7,8 @@ import { AdminComponent } from './admin.component';
 import { PagesComponent } from './pages/pages.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
-
 @NgModule({
-  declarations: [
-    AdminComponent,
-    PagesComponent,
-    SidebarComponent
-  ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule
-  ]
+  declarations: [AdminComponent, PagesComponent, SidebarComponent],
+  imports: [CommonModule, AdminRoutingModule, SharedModule],
 })
-export class AdminModule { }
+export class AdminModule {}
