@@ -103,10 +103,24 @@ p {
   background-color: $cyan;
 }
 
+.bg-publish {
+  background-color: $blue-tint;
+}
+.bg-draft {
+  background-color: #ccc;
+}
+.bg-discard {
+  background-color: $red-tint;
+}
+
 .full-hw {
   height: 100%;
   width: 100%;
   display: block;
+}
+
+.full-width {
+  width: 100%;
 }
 
 @media (max-width: 1340px) {

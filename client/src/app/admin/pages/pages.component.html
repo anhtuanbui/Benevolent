@@ -1,6 +1,8 @@
 <div class="pages-title">
   <h1>Pages</h1>
-  <button mat-icon-button><mat-icon>add_circle_outline</mat-icon></button>
+  <button routerLink="/admin/add-page" mat-icon-button>
+    <mat-icon>add_circle_outline</mat-icon>
+  </button>
 </div>
 
 <div class="pages-content">
@@ -8,6 +10,7 @@
     <tr>
       <th>Id</th>
       <th>Title</th>
+      <th>Image</th>
       <th>Created Time</th>
       <th>Author</th>
       <th>Content</th>
@@ -17,14 +20,19 @@
     <tr>
       <td>1</td>
       <td>Test title</td>
+      <td>
+        <img src="/assets/images/grid-card5.jpg" alt="Children" />
+      </td>
       <td>03:00pm 21/03/2022</td>
       <td>Admin</td>
       <td>Test content should be longer</td>
       <td>Published</td>
       <td>
-        <button mat-icon-button><mat-icon>add</mat-icon></button>
-        <button mat-icon-button><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button><mat-icon>remove</mat-icon></button>
+        <div class="inline-block">
+          <button mat-icon-button><mat-icon>add</mat-icon></button>
+          <button mat-icon-button><mat-icon>edit</mat-icon></button>
+          <button mat-icon-button><mat-icon>remove</mat-icon></button>
+        </div>
       </td>
     </tr>
   </table>
