@@ -3,6 +3,8 @@ import { PagesComponent } from './pages/pages.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
+import { SignInComponent } from './account/sign-in/sign-in.component';
+import { SignUpComponent } from './account/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -11,7 +13,9 @@ const routes: Routes = [
     children: [
       { path: 'pages', component: PagesComponent },
       { path: 'add-page', component: AddPageComponent },
-  ],
+      { path: 'sign-in', component: SignInComponent },
+      { path: 'sign-up', component: SignUpComponent },
+    ],
   },
 ];
 

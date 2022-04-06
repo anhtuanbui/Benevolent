@@ -9,6 +9,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { AddPageComponent } from './pages/add-page/add-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { SignUpComponent } from './account/sign-up/sign-up.component';
+import { SignInComponent } from './account/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     PagesComponent,
     SidebarComponent,
     AddPageComponent,
+    SignInComponent,
+    SignUpComponent,
   ],
   imports: [
     CommonModule,

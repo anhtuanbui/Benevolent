@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
 builder.Services.AddDbContext<AppIdentityDbContext>(options =>
 {
     {
@@ -38,6 +40,15 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddScoped<IAccountService, AccountService>();
 
 builder.Services.AddControllers();
+
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy(name: "CorsPolicy", policy =>
+    {
+        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200");
+    });
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -52,6 +63,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("CorsPolicy");
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

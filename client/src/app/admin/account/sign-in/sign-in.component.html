@@ -1,0 +1,19 @@
+<div class="sign-in">
+  <h1>Sign In</h1>
+  <p>Invalid username or password, please try again!</p>
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input type="text" matInput formControlName="username" />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput formControlName="password" />
+    </mat-form-field>
+
+    <button mat-button>Submit</button>
+  </form>
+  <a routerLink="/admin/sign-up">Don't have an account? Register</a>
+</div>

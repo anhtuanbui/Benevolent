@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +18,7 @@ import { InfoPageComponent } from './info-page/info-page.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

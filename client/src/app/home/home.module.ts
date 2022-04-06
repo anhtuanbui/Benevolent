@@ -15,7 +15,7 @@ import { SwiperModule } from 'swiper/angular';
     CommonModule,
     HomeRoutingModule,
     SwiperModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class HomeModule { }

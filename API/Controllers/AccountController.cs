@@ -58,7 +58,7 @@ namespace Server.Controllers
             if(login.Username == null || login.Password == null)
             {
                 var message = "Username and password fields are required to login";
-                ModelState.AddModelError("UserName", message);
+                ModelState.AddModelError("login", message);
                 return BadRequest(ModelState);
             }
 
@@ -76,12 +76,18 @@ namespace Server.Controllers
                 user = await _userManager.FindByEmailAsync(login.Username);
             }
 
+            if (user == null){
+                var message = "Invalid username or email";
+                ModelState.AddModelError("login", message);
+                return BadRequest(ModelState);
+            }
+
             var loginResult = await _signInManager.CheckPasswordSignInAsync(user, login.Password, false);
 
             if (!loginResult.Succeeded)
             {
-                var message = "Invalid password.";
-                ModelState.AddModelError("UserName", message);
+                var message = "Invalid password";
+                ModelState.AddModelError("login", message);
                 return BadRequest(ModelState);
             }
 
