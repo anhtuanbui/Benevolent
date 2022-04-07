@@ -1,3 +1,4 @@
+import { RegisterSucceededComponent } from './account/register-succeeded/register-succeeded.component';
 import { AddPageComponent } from './pages/add-page/add-page.component';
 import { PagesComponent } from './pages/pages.component';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,7 @@ const routes: Routes = [
     children: [
       { path: 'pages', component: PagesComponent },
       { path: 'add-page', component: AddPageComponent },
+      { path: 'register-succeeded', component: RegisterSucceededComponent },
       { path: 'sign-in', component: SignInComponent },
       { path: 'sign-up', component: SignUpComponent },
     ],

@@ -25,10 +25,10 @@ export class AdminComponent implements OnInit {
       this.isLogin = true;
     }
 
-    if (this.isLogin === false) {
-      this.router.navigateByUrl('/admin/sign-in');
-    }else{
-      this.router.navigateByUrl('/admin/pages');
-    }
+    // if (this.isLogin === false) {
+    //   this.router.navigateByUrl('/admin/sign-in');
+    // }else{
+    //   this.router.navigateByUrl('/admin/pages');
+    // }
   }
 }

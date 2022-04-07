@@ -1,28 +1,36 @@
 <div class="sign-up">
   <h1>Sign Up</h1>
-  <p>Invalid username or password, please try again!</p>
-  <mat-form-field appearance="fill">
-    <mat-label>Username</mat-label>
-    <input matInput type="text"/>
-  </mat-form-field>
-  <br />
-  <mat-form-field appearance="fill">
-    <mat-label>Email</mat-label>
-    <input matInput type="email"/>
-  </mat-form-field>
-  <br />
+  <ng-container *ngIf="!errors">
+    <p><br /></p>
+  </ng-container>
+  <ng-container *ngIf="errors">
+    <p *ngFor="let error of errors">{{ error }}</p>
+  </ng-container>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Password</mat-label>
-    <input matInput type="password"/>
-  </mat-form-field>
-  <br />
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input matInput type="text" formControlName="username" />
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" />
+    </mat-form-field>
+    <br />
 
-  <mat-form-field appearance="fill">
-    <mat-label>Confirm password</mat-label>
-    <input matInput type="password"/>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+    </mat-form-field>
+    <br />
 
-  <button mat-button>Submit</button>
+    <mat-form-field appearance="fill">
+      <mat-label>Confirmed password</mat-label>
+      <input matInput type="password" formControlName="confirmedPassword" />
+    </mat-form-field>
+
+    <button mat-button>Submit</button>
+  </form>
   <a routerLink="/admin/sign-in">Ready to work? Sign in</a>
 </div>

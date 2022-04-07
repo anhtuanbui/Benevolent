@@ -1,0 +1,18 @@
+@import '../../colors.scss';
+
+h2, .mat-icon {
+    color: $green;
+}
+
+h2 {
+    text-align: center;
+}
+
+.mat-icon {
+    width: 100px;
+    font-size: 100px;
+    margin-top: 100px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}

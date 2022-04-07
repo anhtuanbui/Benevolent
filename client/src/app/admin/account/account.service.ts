@@ -21,23 +21,6 @@ export class AccountService {
     return this.currentUserSource.value;
   }
 
-  // loadCurrentUser(token: string) {
-  //   let headers = new HttpHeaders();
-  //   headers = headers.set('Authorization', `Bearer ${token}`);
-
-  //   return this.http
-  //     .get<IUser>(this.baseUrl + 'account/currentuser', { headers })
-  //     .pipe(
-  //       map((user: IUser) => {
-  //         if (user.userName !== '') {
-  //           console.log(user);
-  //           localStorage.setItem('token', user.token);
-  //           this.currentUserSource.next(user);
-  //         }
-  //       })
-  //     );
-  // }
-
   loadCurrentUser(token: string) {
     this.iToken.myToken = token;
     return this.http
@@ -70,7 +53,7 @@ export class AccountService {
       .pipe(
         map((user: IUser) => {
           if (user.userName !== '') {
-            console.log('Register succeeded');
+            this.router.navigateByUrl('/admin/register-succeed');
           }
         })
       );

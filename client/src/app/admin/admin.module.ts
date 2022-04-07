@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { SignUpComponent } from './account/sign-up/sign-up.component';
 import { SignInComponent } from './account/sign-in/sign-in.component';
+import { RegisterSucceededComponent } from './account/register-succeeded/register-succeeded.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SignInComponent } from './account/sign-in/sign-in.component';
     AddPageComponent,
     SignInComponent,
     SignUpComponent,
+    RegisterSucceededComponent,
   ],
   imports: [
     CommonModule,
