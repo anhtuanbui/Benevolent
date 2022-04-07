@@ -10,5 +10,25 @@ import { Component, OnInit } from '@angular/core';
 export class AdminComponent implements OnInit {
   constructor(private router: Router, private accountService: AccountService) {}
 
-  ngOnInit(): void {}
+  isLogin = false;
+
+  ngOnInit(): void {
+    const token = localStorage.getItem('token');
+
+    if(token){
+      this.accountService.loadCurrentUser(token).subscribe(() => {
+        this.router.navigateByUrl('/admin/pages');
+      });
+    }
+
+    if (this.accountService.getCurrentUserValue().userName !== ''){
+      this.isLogin = true;
+    }
+
+    if (this.isLogin === false) {
+      this.router.navigateByUrl('/admin/sign-in');
+    }else{
+      this.router.navigateByUrl('/admin/pages');
+    }
+  }
 }

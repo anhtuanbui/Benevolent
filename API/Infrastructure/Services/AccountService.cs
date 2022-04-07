@@ -77,13 +77,8 @@ namespace API.Infrastructure.Services
             if (user == null)
                 return await Task.FromResult(new AuthUser());
 
-            return await Task.FromResult(new AuthUser(user.UserName, user.Email, token, false));
+            return await Task.FromResult(new AuthUser(user.UserName, user.Email, token, true));
 
-        }
-
-        Task<AuthUser> IAccountService.ValidateJwtTokenAsync(string token)
-        {
-            throw new NotImplementedException();
         }
     }
 }

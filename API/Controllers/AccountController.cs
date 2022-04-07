@@ -29,7 +29,7 @@ namespace Server.Controllers
         {
             if (User?.Identity?.IsAuthenticated == false)
             {
-                ModelState.AddModelError("CurrentUser", "No current user logged in.");
+                ModelState.AddModelError("Errors", "No current user logged in.");
                 return new AuthUser();
             }
 
@@ -42,9 +42,10 @@ namespace Server.Controllers
         }
 
         [HttpPost("loginwithtoken")]
-        public async Task<ActionResult<AuthUser>> LoginWithToken([FromBody]string token)
+        public async Task<ActionResult<AuthUser>> LoginWithToken(Token token)
         {
-            var authUser = await _accountService.ValidateJwtTokenAsync(token);
+            Console.WriteLine("Debug Running");
+            var authUser = await _accountService.ValidateJwtTokenAsync(token.MyToken);
 
             if (authUser == null)
                 return new AuthUser();
@@ -58,7 +59,7 @@ namespace Server.Controllers
             if(login.Username == null || login.Password == null)
             {
                 var message = "Username and password fields are required to login";
-                ModelState.AddModelError("login", message);
+                ModelState.AddModelError("Errors", message);
                 return BadRequest(ModelState);
             }
 
@@ -78,7 +79,7 @@ namespace Server.Controllers
 
             if (user == null){
                 var message = "Invalid username or email";
-                ModelState.AddModelError("login", message);
+                ModelState.AddModelError("Errors", message);
                 return BadRequest(ModelState);
             }
 
@@ -87,7 +88,7 @@ namespace Server.Controllers
             if (!loginResult.Succeeded)
             {
                 var message = "Invalid password";
-                ModelState.AddModelError("login", message);
+                ModelState.AddModelError("Errors", message);
                 return BadRequest(ModelState);
             }
 
@@ -106,14 +107,14 @@ namespace Server.Controllers
             if (_context.Users.Any(u => u.UserName == register.UserName))
             {
                 message = $"The name {register.UserName} has been used.";
-                ModelState.AddModelError("UserName", message);
+                ModelState.AddModelError("Errors", message);
                 return BadRequest(ModelState);
             }
 
             if (_context.Users.Any(u => u.Email == register.Email))
             {
                 message = $"Email {register.Email} has been used.";
-                ModelState.AddModelError("Email", message);
+                ModelState.AddModelError("Errors", message);
                 return BadRequest(ModelState);
             }
 
@@ -126,7 +127,7 @@ namespace Server.Controllers
             if (!result.Succeeded)
             {
                 message = "Register failed";
-                ModelState.AddModelError("Error", message);
+                ModelState.AddModelError("Errors", message);
                 return BadRequest(ModelState);
             }
 
@@ -137,7 +138,7 @@ namespace Server.Controllers
             });
         }
 
-        [HttpPost("logout")]
+        [HttpGet("logout")]
         public async Task<ActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

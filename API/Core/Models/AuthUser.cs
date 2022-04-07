@@ -21,7 +21,7 @@ namespace API.Core.Models
         }
 
         public bool IsAuthenticated { get; set; } = false;
-        public string UserName { get; set; } = "anonymous";
+        public string UserName { get; set; } = "";
         public string? Email { get; set; }
         public string? Token { get; set; }
     }
