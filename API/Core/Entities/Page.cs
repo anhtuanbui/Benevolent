@@ -15,6 +15,7 @@ namespace API.Core.Entities
         public bool IsPublic { get; set; }
         public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }
-        public ICollection<TagAsign>? TagAsigns { get; set; }
+        public int TagId { get; set; }
+        public Tag? Tag { get; set; }
     }
 }
