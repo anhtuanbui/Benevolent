@@ -11,5 +11,9 @@ namespace API.Data
         public AppIdentityDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+
+        public DbSet<Page>? Page { get; set; }
+        public DbSet<Tag>? Tag { get; set; }
+        public DbSet<Feedback>? Feedback { get; set; }
     }
 }

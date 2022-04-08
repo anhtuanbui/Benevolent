@@ -4,7 +4,6 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  FormBuilder,
 } from '@angular/forms';
 
 @Component({
@@ -12,19 +11,22 @@ import {
   styleUrls: ['./add-page.component.scss'],
 })
 export class AddPageComponent implements OnInit {
-  // a known issue on html file
-  
+  addPage! : FormGroup
   public Editor = ClassicEditor;
-
-  addPage = new FormGroup({
-    image: new FormControl(''),
-    title: new FormControl(''),
-    content: new FormControl(''),
-  });
 
   value = 'clear this';
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.createAddPageForm();
+  }
+
+  createAddPageForm(){
+    this.addPage = new FormGroup({
+      image: new FormControl(''),
+      title: new FormControl('', Validators.required),
+      content: new FormControl(''),
+    });
+  }
 }

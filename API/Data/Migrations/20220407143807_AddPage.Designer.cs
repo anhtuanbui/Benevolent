@@ -4,6 +4,7 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    partial class AppIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220407143807_AddPage")]
+    partial class AddPage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -473,7 +475,7 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Core.Entities.Feedback", b =>
                 {
                     b.HasOne("API.Core.Entities.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("Feedbacks")
                         .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
@@ -482,11 +484,11 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Core.Entities.Page", b =>
                 {
                     b.HasOne("API.Core.Entities.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("Pages")
                         .HasForeignKey("AppUserId");
 
                     b.HasOne("API.Core.Entities.Tag", "Tag")
-                        .WithMany()
+                        .WithMany("Pages")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -545,6 +547,18 @@ namespace API.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("API.Core.Entities.AppUser", b =>
+                {
+                    b.Navigation("Feedbacks");
+
+                    b.Navigation("Pages");
+                });
+
+            modelBuilder.Entity("API.Core.Entities.Tag", b =>
+                {
+                    b.Navigation("Pages");
                 });
 #pragma warning restore 612, 618
         }

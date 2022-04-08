@@ -5,6 +5,7 @@ using API.Data;
 using API.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Server.Controllers
 {
@@ -24,7 +25,13 @@ namespace Server.Controllers
             _accountService = accountService;
         }
 
-        [HttpGet("currentuser")]
+        [HttpGet]
+        public async Task<IActionResult> PageList()
+        {
+            return Ok(await _context.Users!.ToListAsync());
+        }
+
+        [HttpGet("CurrentUser")]
         public async Task<ActionResult<AuthUser>> CurrentUser()
         {
             if (User?.Identity?.IsAuthenticated == false)
@@ -41,7 +48,7 @@ namespace Server.Controllers
             return await _accountService.GenerateAuthUserAsync(currentUser);
         }
 
-        [HttpPost("loginwithtoken")]
+        [HttpPost("LoginWithToken")]
         public async Task<ActionResult<AuthUser>> LoginWithToken(Token token)
         {
             Console.WriteLine("Debug Running");
@@ -53,7 +60,7 @@ namespace Server.Controllers
             return authUser;
         }
 
-        [HttpPost("login")]
+        [HttpPost("Login")]
         public async Task<ActionResult<AuthUser>> Login(Login login)
         {
             if(login.Username == null || login.Password == null)
@@ -99,7 +106,7 @@ namespace Server.Controllers
             return authUser;
         }
 
-        [HttpPost("register")]
+        [HttpPost("Register")]
         public async Task<ActionResult<AuthUser>> Register(Register register)
         {
             string message = "";
@@ -138,7 +145,7 @@ namespace Server.Controllers
             });
         }
 
-        [HttpGet("logout")]
+        [HttpGet("Logout")]
         public async Task<ActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

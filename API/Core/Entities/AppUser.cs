@@ -8,7 +8,5 @@ namespace API.Core.Entities
         public string? LastName { get; set; }
         public string? Address { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public ICollection<Page>? Pages { get; set; }
-        public ICollection<Feedback>? Feedbacks { get; set; }
     }
 }

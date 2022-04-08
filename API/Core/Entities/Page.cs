@@ -7,7 +7,6 @@ namespace API.Core.Entities
 {
     public class Page : BaseEntity
     {
-        public int MyProperty { get; set; }
         public string? Title { get; set; }
         public string? ImageUrl { get; set; }
         public DateTime CreatedTime { get; set; } = DateTime.Now;
