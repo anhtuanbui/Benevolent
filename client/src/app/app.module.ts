@@ -1,4 +1,5 @@
-import { HttpClientModule } from '@angular/common/http';
+import { JwtInterceptor } from './extensions/jwt.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,18 +10,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoPageComponent } from './info-page/info-page.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    InfoPageComponent,
-  ],
+  declarations: [AppComponent, InfoPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

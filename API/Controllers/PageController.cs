@@ -1,6 +1,8 @@
+using System.Security.Claims;
 using API.Core.DTO;
 using API.Core.Entities;
 using API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +22,12 @@ namespace API.Controllers
         public async Task<IActionResult> PageList()
         {
             return Ok(await _context.Page!.ToListAsync());
+        }
+
+        [HttpGet("auth")]
+        [Authorize]
+        public ActionResult<string> TestAuth(){
+            return "Show auth";
         }
 
         [HttpGet("Detail/{id}")]
@@ -43,6 +51,9 @@ namespace API.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> AddPage(PageDto pageDto)
         {
+            var email = User.FindFirstValue(ClaimValueTypes.Email);
+            Console.WriteLine("Debug this: " + User.Identity!.IsAuthenticated);
+            Console.WriteLine("Debug this: " + email);
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity!.Name);
 
             if (user == null)

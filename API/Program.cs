@@ -1,14 +1,16 @@
+using System.Text;
 using API.Core.Entities;
 using API.Data;
 using API.Infrastructure.Interfaces;
 using API.Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 
 builder.Services.AddDbContext<AppIdentityDbContext>(options =>
 {
@@ -17,7 +19,9 @@ builder.Services.AddDbContext<AppIdentityDbContext>(options =>
     };
 });
 
-builder.Services.AddDefaultIdentity<AppUser>().AddEntityFrameworkStores<AppIdentityDbContext>();
+builder.Services.AddDefaultIdentity<AppUser>()
+    .AddEntityFrameworkStores<AppIdentityDbContext>()
+    .AddSignInManager<SignInManager<AppUser>>();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -41,6 +45,21 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 
 builder.Services.AddControllers();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuerSigningKey = true,
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["ClaimSettings:Audience"],
+        ValidIssuer = builder.Configuration["ClaimSettings:Issuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecretKey"]))
+    };
+});
 
 builder.Services.AddCors(opt =>
 {
@@ -49,6 +68,8 @@ builder.Services.AddCors(opt =>
         policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200");
     });
 });
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

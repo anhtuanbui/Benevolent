@@ -1,3 +1,6 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Text.RegularExpressions;
 using API.Core.Entities;
 using API.Core.Models;
@@ -37,13 +40,18 @@ namespace Server.Controllers
             if (User?.Identity?.IsAuthenticated == false)
             {
                 ModelState.AddModelError("Errors", "No current user logged in.");
-                return new AuthUser();
+                return NotFound(ModelState);
             }
 
-            var currentUser = await _userManager.FindByNameAsync(User?.Identity?.Name);
+            var email = User.FindFirstValue(ClaimTypes.Email);
+
+            var currentUser = await _userManager.FindByEmailAsync(email);
 
             if (currentUser == null)
-                return new AuthUser();
+            {
+                ModelState.AddModelError("Errors", "Can't find this email");
+                return NotFound(ModelState);
+            }
 
             return await _accountService.GenerateAuthUserAsync(currentUser);
         }
@@ -63,7 +71,7 @@ namespace Server.Controllers
         [HttpPost("Login")]
         public async Task<ActionResult<AuthUser>> Login(Login login)
         {
-            if(login.Username == null || login.Password == null)
+            if (login.Username == null || login.Password == null)
             {
                 var message = "Username and password fields are required to login";
                 ModelState.AddModelError("Errors", message);
@@ -84,7 +92,8 @@ namespace Server.Controllers
                 user = await _userManager.FindByEmailAsync(login.Username);
             }
 
-            if (user == null){
+            if (user == null)
+            {
                 var message = "Invalid username or email";
                 ModelState.AddModelError("Errors", message);
                 return BadRequest(ModelState);

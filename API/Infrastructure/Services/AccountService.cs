@@ -26,7 +26,7 @@ namespace API.Infrastructure.Services
             var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secret));
 
             var issuer = _config["ClaimSettings:Issuer"];
-            var audience = _config["ClaimSettings:Issuer"];
+            var audience = _config["ClaimSettings:Audience"];
 
             var claimEmail = new Claim(ClaimTypes.Email, user.Email);
             var claimUserName = new Claim(ClaimTypes.NameIdentifier, user.UserName);
@@ -45,6 +45,7 @@ namespace API.Infrastructure.Services
 
             var securityToken = tokenHandler.CreateToken(tokenDescriptor);
             var token = tokenHandler.WriteToken(securityToken);
+
             return await Task.FromResult(new AuthUser(user.UserName, user.Email, token, true));
         }
 
@@ -54,7 +55,7 @@ namespace API.Infrastructure.Services
             var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secret));
 
             var issuer = _config["ClaimSettings:Issuer"];
-            var audience = _config["ClaimSettings:Issuer"];
+            var audience = _config["ClaimSettings:Audience"];
 
             var tokenHandler = new JwtSecurityTokenHandler();
 

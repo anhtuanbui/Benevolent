@@ -13,20 +13,21 @@
       <input
         id="image"
         type="file"
-        formControlName="image"
+        (change)="onImageChange($event)"
+        accept="image/*"
         style="border: none"
       />
       <br />
       <mat-form-field appearance="outline">
         <mat-label>Tag</mat-label>
-        <mat-select formControlName="tag">
+        <mat-select formControlName="tagId">
           <mat-option *ngFor="let tag of tags" value="{{ tag.id }}">{{
             tag.name
           }}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
-    <img src="" alt="" />
+    <img *ngIf="imageSrc" [src]="imageSrc" alt="thumbnail image" />
   </div>
 
   <mat-form-field class="form-title" appearance="outline">
