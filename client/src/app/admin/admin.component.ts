@@ -16,9 +16,7 @@ export class AdminComponent implements OnInit {
     const token = localStorage.getItem('token');
 
     if(token){
-      this.accountService.loadCurrentUser(token).subscribe(() => {
-        this.router.navigateByUrl('/admin/pages');
-      });
+      this.accountService.loadCurrentUser(token).subscribe();
     }
 
     if (this.accountService.getCurrentUserValue().userName !== ''){

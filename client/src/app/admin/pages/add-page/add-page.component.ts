@@ -1,3 +1,5 @@
+import { ITag } from './../../../shared/models/tag';
+import { TagsService } from './../../tags/tags.service';
 import { Component, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {
@@ -11,22 +13,38 @@ import {
   styleUrls: ['./add-page.component.scss'],
 })
 export class AddPageComponent implements OnInit {
-  addPage! : FormGroup
+  addPageForm! : FormGroup
+  tags: ITag[] = [];
+
   public Editor = ClassicEditor;
 
   value = 'clear this';
 
-  constructor() {}
+  constructor(private tagsService: TagsService) {}
 
   ngOnInit(): void {
     this.createAddPageForm();
+    this.getTagList();
+  }
+  
+  getTagList(){
+    this.tagsService.getTags().subscribe(() => {
+      this.tags = this.tagsService.tags;
+      console.log(this.tags);
+    });
+
   }
 
   createAddPageForm(){
-    this.addPage = new FormGroup({
+    this.addPageForm = new FormGroup({
       image: new FormControl(''),
+      tag: new FormControl(''),
       title: new FormControl('', Validators.required),
       content: new FormControl(''),
     });
+  }
+
+  onSubmit(){
+    console.log(this.addPageForm.value);
   }
 }

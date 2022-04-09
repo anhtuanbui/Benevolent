@@ -1,0 +1,29 @@
+<div class="pages-title">
+    <h1>Tags</h1>
+    <button (click)="addTag()" mat-icon-button>
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+  </div>
+  
+  <div class="pages-content">
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Action</th>
+      </tr>
+      <tr *ngFor="let tag of tags">
+        <td>{{tag.id}}</td>
+        <td style="text-align: left;">{{tag.name}}</td>
+        <td>{{tag.position}}</td>
+        <td>
+          <div class="inline-block">
+            <button mat-icon-button routerLink="/admin/edit-tag/{{tag.id}}"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button (click)="deleteTag(tag.id)"><mat-icon>remove</mat-icon></button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  

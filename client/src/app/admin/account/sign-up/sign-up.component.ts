@@ -11,8 +11,6 @@ export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup;
   errors: any;
 
-  response = new Observable();
-
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {

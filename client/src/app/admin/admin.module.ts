@@ -12,6 +12,9 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { SignUpComponent } from './account/sign-up/sign-up.component';
 import { SignInComponent } from './account/sign-in/sign-in.component';
 import { RegisterSucceededComponent } from './account/register-succeeded/register-succeeded.component';
+import { TagsComponent } from './tags/tags.component';
+import { AddTagComponent } from './tags/add-tag/add-tag.component';
+import { EditTagComponent } from './tags/edit-tag/edit-tag.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { RegisterSucceededComponent } from './account/register-succeeded/registe
     SignInComponent,
     SignUpComponent,
     RegisterSucceededComponent,
+    TagsComponent,
+    AddTagComponent,
+    EditTagComponent,
   ],
   imports: [
     CommonModule,

@@ -22,10 +22,26 @@ namespace API.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("list")]
         public async Task<IActionResult> TagList()
         {
             return Ok(await _context.Tag!.ToListAsync());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> TagDetail(int? id)
+        {
+            if (id == null){
+                return NotFound();
+            }
+
+            var tag = await _context.Tag!.FirstOrDefaultAsync(t => t.Id == id);
+
+            if(tag == null){
+                return NotFound();
+            }
+
+            return Ok(tag);
         }
 
         [HttpPost("add")]
@@ -39,11 +55,6 @@ namespace API.Controllers
         [HttpPost("edit/{id}")]
         public async Task<IActionResult> EditTag(int id, Tag tag)
         {
-            if (id != tag.Id)
-            {
-                return NotFound();
-            }
-
             if (tag.Name.IsNullOrEmpty())
             {
                 ModelState.AddModelError("Errors", "Tag name is invalid");
@@ -60,18 +71,19 @@ namespace API.Controllers
             try
             {
                 findTag.Name = tag.Name;
+                findTag.Position = tag.Position;
                 _context.Update(findTag);
                 await _context.SaveChangesAsync();
                 return Ok(tag);
             }
             catch (DbUpdateConcurrencyException)
             {
-                return NotFound();
+                return NotFound("Exception");
             }
         }
 
 
-        [HttpPost("Delete/{id}")]
+        [HttpGet("Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

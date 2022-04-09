@@ -1,3 +1,6 @@
+import { EditTagComponent } from './tags/edit-tag/edit-tag.component';
+import { AddTagComponent } from './tags/add-tag/add-tag.component';
+import { TagsComponent } from './tags/tags.component';
 import { RegisterSucceededComponent } from './account/register-succeeded/register-succeeded.component';
 import { AddPageComponent } from './pages/add-page/add-page.component';
 import { PagesComponent } from './pages/pages.component';
@@ -13,7 +16,10 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: 'pages', component: PagesComponent },
+      { path: 'tags', component: TagsComponent },
       { path: 'add-page', component: AddPageComponent },
+      { path: 'add-tag', component: AddTagComponent },
+      { path: 'edit-tag/:id', component: EditTagComponent },
       { path: 'sign-in', component: SignInComponent },
       { path: 'sign-up', component: SignUpComponent },
       { path: 'register-succeeded', component: RegisterSucceededComponent },

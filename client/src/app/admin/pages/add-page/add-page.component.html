@@ -6,32 +6,42 @@
   <h1>Add page</h1>
 </div>
 
-<form class="form-add" [formGroup]="addPage">
+<form class="form-add" [formGroup]="addPageForm">
   <div class="form-image">
     <div class="form-image-input">
       <label for="image">Image</label>
-      <input type="file" formControlName="image" style="border: none" />
+      <input
+        id="image"
+        type="file"
+        formControlName="image"
+        style="border: none"
+      />
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Tag</mat-label>
+        <mat-select formControlName="tag">
+          <mat-option *ngFor="let tag of tags" value="{{ tag.id }}">{{
+            tag.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <img src="" alt="" />
   </div>
 
   <mat-form-field class="form-title" appearance="outline">
-    <mat-label>Title</mat-label>
-    <input matInput type="text" [(ngModel)]="value" />
-    <button
-      *ngIf="value"
-      matSuffix
-      mat-icon-button
-      aria-label="Clear"
-      (click)="value = ''"
-    >
-      <mat-icon>close</mat-icon>
-    </button>
+    <mat-label for="title">Title</mat-label>
+    <input id="title" formControlName="title" matInput />
   </mat-form-field>
 
-  <ckeditor class="form-editor" [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+  <ckeditor
+    class="form-editor"
+    [editor]="Editor"
+    data=""
+    formControlName="content"
+  ></ckeditor>
 
-  <button class="bg-publish" mat-button>Publish</button>
+  <button class="bg-publish" mat-button (click)="onSubmit()">Publish</button>
   <button class="bg-draft" mat-button>Draft</button>
   <button class="bg-discard" mat-button>Discard</button>
 </form>
