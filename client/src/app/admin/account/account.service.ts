@@ -23,12 +23,14 @@ export class AccountService {
 
   loadCurrentUser(token: string) {
     let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
     headers = headers.set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     this.iToken.myToken = token;
+
     return this.http
-      .post<IUser>(this.baseUrl + 'account/currentuser', {headers})
-      .pipe(
-        map((user: IUser) => {
+    .get<IUser>(this.baseUrl + 'account/currentuser', {headers: headers})
+    .pipe(
+      map((user: IUser) => {
           if (user.userName !== '') {
             localStorage.setItem('token', user.token);
             this.currentUserSource.next(user);

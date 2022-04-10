@@ -1,7 +1,3 @@
-<!-- Known issues -->
-<!-- Elements does not apear at first as it associate with children does not render on init. -->
-<!-- The element only appears after click on the page or other elements -->
-
 <div class="pages-title">
   <h1>Add page</h1>
 </div>
@@ -21,9 +17,9 @@
       <mat-form-field appearance="outline">
         <mat-label>Tag</mat-label>
         <mat-select formControlName="tagId">
-          <mat-option *ngFor="let tag of tags" value="{{ tag.id }}">{{
-            tag.name
-          }}</mat-option>
+          <mat-option *ngFor="let tag of tags" value="{{ tag.id }}">
+            {{ tag.name }}
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -43,6 +39,5 @@
   ></ckeditor>
 
   <button class="bg-publish" mat-button (click)="onSubmit()">Publish</button>
-  <button class="bg-draft" mat-button>Draft</button>
-  <button class="bg-discard" mat-button>Discard</button>
+  <button class="bg-discard" mat-button (click)="onDiscard()">Discard</button>
 </form>

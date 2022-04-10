@@ -21,14 +21,12 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> PageList()
         {
-            return Ok(await _context.Page!.ToListAsync());
+            return Ok(await _context.Page!
+                .Include(p => p.AppUser)
+                .Include(a => a.Tag)
+                .ToListAsync());
         }
 
-        [HttpGet("auth")]
-        [Authorize]
-        public ActionResult<string> TestAuth(){
-            return "Show auth";
-        }
 
         [HttpGet("Detail/{id}")]
         public async Task<IActionResult> PageDetail(int? id)
@@ -39,7 +37,7 @@ namespace API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var page = await _context.Page!.FirstOrDefaultAsync(p => p.Id == id);
+            var page = await _context.Page!.FindAsync(id);
 
             if (page == null)
             {
@@ -52,15 +50,15 @@ namespace API.Controllers
         public async Task<IActionResult> AddPage(PageDto pageDto)
         {
             var email = User.FindFirstValue(ClaimValueTypes.Email);
-            Console.WriteLine("Debug this: " + User.Identity!.IsAuthenticated);
-            Console.WriteLine("Debug this: " + email);
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity!.Name);
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
 
             if (user == null)
             {
                 ModelState.AddModelError("Errors", "User is not logged in");
                 return BadRequest(ModelState);
             }
+
             var page = new Page
             {
                 Title = pageDto.Title,
@@ -68,7 +66,7 @@ namespace API.Controllers
                 ImageUrl = pageDto.ImageUrl,
                 Content = pageDto.Content,
                 IsPublic = true,
-                AppUserId = user!.Id
+                AppUserId = user.Id
             };
 
             _context.Add(page);
@@ -79,13 +77,16 @@ namespace API.Controllers
         [HttpPost("edit/{id}")]
         public async Task<IActionResult> EditPage(int id, PageDto pageDto)
         {
-            var page = await _context.Page!.FirstOrDefaultAsync(p => p.Id == id);
+            var page = await _context.Page!.FindAsync(id);
+
             if (page == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity!.Name);
+            var email = User.FindFirstValue(ClaimValueTypes.Email);
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
 
             if (user == null)
             {
@@ -98,14 +99,13 @@ namespace API.Controllers
             page.ImageUrl = pageDto.ImageUrl;
             page.Content = pageDto.Content;
             page.IsPublic = true;
-            page.AppUserId = user!.Id;
 
             _context.Update(page);
             await _context.SaveChangesAsync();
             return Ok(page);
         }
 
-        [HttpPost("Delete/{id}")]
+        [HttpGet("Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -113,7 +113,8 @@ namespace API.Controllers
                 return NotFound();
             }
 
-            var page = await _context.Page!.FirstOrDefaultAsync(t => t.Id == id);
+            var page = await _context.Page!.FindAsync(id);
+
             if (page == null)
             {
                 return NotFound();
@@ -123,5 +124,6 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
             return Ok();
         }
+
     }
 }

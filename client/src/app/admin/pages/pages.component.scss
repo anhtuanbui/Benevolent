@@ -36,6 +36,20 @@
   }
 }
 
+.content-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 400px;
+  white-space: nowrap;
+}
+
+.title-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 250px;
+  white-space: nowrap;
+}
+
 .inline-block {
   display: inline-block;
 }

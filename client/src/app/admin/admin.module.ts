@@ -15,6 +15,7 @@ import { RegisterSucceededComponent } from './account/register-succeeded/registe
 import { TagsComponent } from './tags/tags.component';
 import { AddTagComponent } from './tags/add-tag/add-tag.component';
 import { EditTagComponent } from './tags/edit-tag/edit-tag.component';
+import { EditPageComponent } from './pages/edit-page/edit-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { EditTagComponent } from './tags/edit-tag/edit-tag.component';
     TagsComponent,
     AddTagComponent,
     EditTagComponent,
+    EditPageComponent,
   ],
   imports: [
     CommonModule,

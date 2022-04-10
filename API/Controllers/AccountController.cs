@@ -6,6 +6,7 @@ using API.Core.Entities;
 using API.Core.Models;
 using API.Data;
 using API.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,13 @@ namespace Server.Controllers
             _signInManager = signInManager;
             _context = context;
             _accountService = accountService;
+        }
+
+        
+        [HttpGet("auth")]
+        [Authorize]
+        public ActionResult<string> TestAuth(){
+            return "Show auth";
         }
 
         [HttpGet]

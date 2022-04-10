@@ -1,0 +1,45 @@
+<div class="pages-title">
+    <h1>Edit page</h1>
+  </div>
+  
+  <form class="form-add" [formGroup]="editPageForm">
+    <div class="form-image">
+      <div class="form-image-input">
+        <label for="image">Image</label>
+        <input
+          id="image"
+          type="file"
+          (change)="onImageChange($event)"
+          accept="image/*"
+          style="border: none"
+        />
+        <br />
+        <mat-form-field appearance="outline">
+          <mat-label>Tag</mat-label>
+          <mat-select [(value)]="selectedTag" formControlName="tagId">
+            <mat-option *ngFor="let tag of tags" value="{{ tag.id }}">{{
+              tag.name
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+      </div>
+      <img *ngIf="imageSrc" [src]="imageSrc" alt="thumbnail image" />
+    </div>
+  
+    <mat-form-field class="form-title" appearance="outline">
+      <mat-label for="title">Title</mat-label>
+      <input id="title" formControlName="title" matInput />
+    </mat-form-field>
+  
+    <ckeditor
+      class="form-editor"
+      [editor]="Editor"
+      data=""
+      formControlName="content"
+    ></ckeditor>
+  
+    <button class="bg-publish" mat-button (click)="onSubmit()">Publish</button>
+    <button class="bg-discard" mat-button (click)="onDiscard()">Discard</button>
+  </form>
+  

@@ -10,15 +10,15 @@ import { Component, OnInit } from '@angular/core';
 export class TagsComponent implements OnInit {
   tags: ITag[] = [];
 
-  constructor(private router: Router, private TagsService: TagsService) {}
+  constructor(private router: Router, private tagsService: TagsService) {}
 
   ngOnInit(): void {
     this.getTags();
   }
 
   getTags() {
-    this.TagsService.getTags().subscribe(() => {
-      this.tags = this.TagsService.tags;
+    this.tagsService.getTags().subscribe(() => {
+      this.tags = this.tagsService.tags;
     });
   }
 
@@ -27,7 +27,7 @@ export class TagsComponent implements OnInit {
   }
 
   deleteTag(id: number) {
-    this.TagsService.deleteTag(id).subscribe(() => {
+    this.tagsService.deleteTag(id).subscribe(() => {
       this.getTags();
     });
   }

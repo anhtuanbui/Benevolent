@@ -1,7 +1,7 @@
 import { Tag } from './../../../shared/models/tag';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TagsService } from '../tags.service';
 
 @Component({
@@ -16,7 +16,8 @@ export class EditTagComponent implements OnInit {
 
   constructor(
     private tagsService: TagsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +44,8 @@ export class EditTagComponent implements OnInit {
   }
 
   onSubmit() {
-    this.tagsService.editTag(this.id, this.editTagForm.value).subscribe();
+    this.tagsService.editTag(this.id, this.editTagForm.value).subscribe(()=>{
+      this.router.navigateByUrl('/admin/tags');
+    });
   }
 }

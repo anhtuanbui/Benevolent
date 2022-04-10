@@ -15,5 +15,6 @@ namespace API.Data
         public DbSet<Page>? Page { get; set; }
         public DbSet<Tag>? Tag { get; set; }
         public DbSet<Feedback>? Feedback { get; set; }
+
     }
 }

@@ -1,6 +1,6 @@
 <div class="pages-title">
   <h1>Pages</h1>
-  <button (click)="addPage()" mat-icon-button>
+  <button (click)="addPageBtn()" mat-icon-button>
     <mat-icon>add_circle_outline</mat-icon>
   </button>
 </div>
@@ -9,29 +9,43 @@
   <table>
     <tr>
       <th>Id</th>
-      <th>Title</th>
       <th>Image</th>
+      <th>Title</th>
+      <th>Tag</th>
       <th>Created Time</th>
       <th>Author</th>
       <th>Content</th>
       <th>Status</th>
       <th>Action</th>
     </tr>
-    <tr>
-      <td>1</td>
-      <td>Test title</td>
+    <tr *ngFor="let page of pages">
+      <td>{{ page.id }}</td>
       <td>
-        <img src="/assets/images/grid-card5.jpg" alt="Children" />
+        <img [src]="page.imageUrl" alt="Children" />
       </td>
-      <td>03:00pm 21/03/2022</td>
-      <td>Admin</td>
-      <td>Test content should be longer</td>
-      <td>Published</td>
+      <td style="text-align: left">
+        <div class="title-text">{{ page.title }}</div>
+      </td>
+
+      <td>{{ page.tag.name }}</td>
+      <td>{{ page.createdTime | date: "medium" }}</td>
+      <td>{{ page.appUser.userName }}</td>
+      <td style="text-align: left">
+        <div class="content-text">{{ page.content }}</div>
+      </td>
+      <td>
+        <span *ngIf="page.isPublic">Published</span
+        ><span *ngIf="!page.isPublic">Drafted</span>
+      </td>
       <td>
         <div class="inline-block">
-          <button mat-icon-button><mat-icon>add</mat-icon></button>
-          <button mat-icon-button><mat-icon>edit</mat-icon></button>
-          <button mat-icon-button><mat-icon>remove</mat-icon></button>
+          <button mat-icon-button><mat-icon>details</mat-icon></button>
+          <button mat-icon-button routerLink="/admin/edit-page/{{ page.id }}">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deletePage(page.id)">
+            <mat-icon>remove</mat-icon>
+          </button>
         </div>
       </td>
     </tr>

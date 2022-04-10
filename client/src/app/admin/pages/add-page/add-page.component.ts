@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { PagesService } from './../pages.service';
 import { ITag } from './../../../shared/models/tag';
 import { TagsService } from './../../tags/tags.service';
@@ -24,7 +25,8 @@ export class AddPageComponent implements OnInit {
   constructor(
     private tagsService: TagsService,
     private pagesService: PagesService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -74,7 +76,11 @@ export class AddPageComponent implements OnInit {
   // things to do with pages services
   addPage(){
     this.pagesService.addPage(this.addPageForm.value).subscribe(()=>{
-      console.log('succeeded');
+      this.router.navigateByUrl('/admin/pages');
     })
+  }
+
+  onDiscard(){
+    this.router.navigateByUrl('/admin/pages');
   }
 }
