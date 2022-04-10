@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20220406042125_ChangeInPage")]
-    partial class ChangeInPage
+    [Migration("20220410075718_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -163,7 +163,7 @@ namespace API.Data.Migrations
                     b.Property<bool>("IsPublic")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MyProperty")
+                    b.Property<int>("TagId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -172,6 +172,8 @@ namespace API.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
+
+                    b.HasIndex("TagId");
 
                     b.ToTable("Page");
                 });
@@ -187,32 +189,12 @@ namespace API.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Tag");
-                });
-
-            modelBuilder.Entity("API.Core.Entities.TagAsign", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("PageId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PageId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("TagAsign");
                 });
 
             modelBuilder.Entity("Duende.IdentityServer.EntityFramework.Entities.DeviceFlowCodes", b =>
@@ -496,7 +478,7 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Core.Entities.Feedback", b =>
                 {
                     b.HasOne("API.Core.Entities.AppUser", "AppUser")
-                        .WithMany("Feedbacks")
+                        .WithMany()
                         .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
@@ -505,27 +487,16 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Core.Entities.Page", b =>
                 {
                     b.HasOne("API.Core.Entities.AppUser", "AppUser")
-                        .WithMany("Pages")
+                        .WithMany()
                         .HasForeignKey("AppUserId");
 
-                    b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("API.Core.Entities.TagAsign", b =>
-                {
-                    b.HasOne("API.Core.Entities.Page", "Page")
-                        .WithMany("TagAsigns")
-                        .HasForeignKey("PageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("API.Core.Entities.Tag", "Tag")
-                        .WithMany("TagAsigns")
+                        .WithMany()
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Page");
+                    b.Navigation("AppUser");
 
                     b.Navigation("Tag");
                 });
@@ -579,23 +550,6 @@ namespace API.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("API.Core.Entities.AppUser", b =>
-                {
-                    b.Navigation("Feedbacks");
-
-                    b.Navigation("Pages");
-                });
-
-            modelBuilder.Entity("API.Core.Entities.Page", b =>
-                {
-                    b.Navigation("TagAsigns");
-                });
-
-            modelBuilder.Entity("API.Core.Entities.Tag", b =>
-                {
-                    b.Navigation("TagAsigns");
                 });
 #pragma warning restore 612, 618
         }

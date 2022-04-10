@@ -8,9 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoPageComponent } from './info-page/info-page.component';
+import { SendFeedbackSuccessComponent } from './send-feedback-success/send-feedback-success.component';
 
 @NgModule({
-  declarations: [AppComponent, InfoPageComponent],
+  declarations: [AppComponent, InfoPageComponent, SendFeedbackSuccessComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

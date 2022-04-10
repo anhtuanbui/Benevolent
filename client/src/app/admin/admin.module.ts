@@ -16,6 +16,7 @@ import { TagsComponent } from './tags/tags.component';
 import { AddTagComponent } from './tags/add-tag/add-tag.component';
 import { EditTagComponent } from './tags/edit-tag/edit-tag.component';
 import { EditPageComponent } from './pages/edit-page/edit-page.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { EditPageComponent } from './pages/edit-page/edit-page.component';
     AddTagComponent,
     EditTagComponent,
     EditPageComponent,
+    FeedbackComponent,
   ],
   imports: [
     CommonModule,

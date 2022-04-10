@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,6 +17,7 @@ import { SwiperModule } from 'swiper/angular';
     HomeRoutingModule,
     SwiperModule,
     SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class HomeModule { }

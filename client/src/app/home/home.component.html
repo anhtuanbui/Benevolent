@@ -140,33 +140,33 @@
   <div class="container contact-container">
     <h1>We want to hear from you</h1>
 
-    <form class="contact-form" action="">
+    <form class="contact-form" [formGroup]="feedbackForm" (ngSubmit)="onFeedbackSubmit()">
       <div class="contact-form-field">
         <label class="form-label" for="">Full name</label>
-        <input type="text" name="FullName" />
+        <input formControlName="fullName" type="text" name="FullName" />
       </div>
       <div class="contact-form-field">
         <label class="form-label" for="">Phone number</label>
-        <input type="text" name="PhoneNumber" />
+        <input formControlName="phoneNumber" type="text" name="PhoneNumber" />
       </div>
       <div class="contact-form-field">
         <label class="form-label" for="">Your email</label>
-        <input type="text" name="Email" />
+        <input formControlName="email" type="text" name="Email" />
       </div>
       <div class="contact-form-field">
         <label class="form-label" for="">Suburb where you live</label>
-        <input type="text" name="Suburb" />
+        <input formControlName="surburb" type="text" name="Suburb" />
       </div>
       <div class="contact-form-field">
         <label class="form-label" for="">When can we give you a call?</label>
-        <input type="text" name="Time" />
+        <input formControlName="timeToCall" type="text" name="Time" />
       </div>
       <div class="contact-form-field">
         <div class="button-form-div">
           <label class="form-label" for="">Your message</label>
           <button mat-button>Submit</button>
         </div>
-        <textarea type="text" name="Message"></textarea>
+        <textarea formControlName="message" type="text" name="Message"></textarea>
       </div>
     </form>
   </div>

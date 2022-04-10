@@ -1,0 +1,47 @@
+<div class="pages-title">
+  <h1>Feedbacks</h1>
+</div>
+
+<div class="pages-content">
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Full name</th>
+      <th>Phone number</th>
+      <th>Email</th>
+      <th>Surburb</th>
+      <th>Time to call</th>
+      <th>Message</th>
+      <th>Received time</th>
+      <th>Checked</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let feedback of feedbacks">
+      <td>{{ feedback.id }}</td>
+      <td>{{ feedback.fullName }}</td>
+      <td>{{ feedback.phoneNumber }}</td>
+      <td>{{ feedback.email }}</td>
+      <td>{{ feedback.surburb }}</td>
+      <td>{{ feedback.timeToCall }}</td>
+      <td style="text-align: left">{{ feedback.message }}</td>
+      <td>{{ feedback.receivedTime | date: "medium" }}</td>
+      <td>
+        <span *ngIf="feedback.appUser">By {{ feedback.appUser.userName }}</span>
+        
+      </td>
+
+      <td>
+        <div class="inline-block">
+          <button mat-icon-button (click)="checkFeedback(feedback.id)">
+            <mat-icon>done</mat-icon>
+          </button>
+          <button mat-icon-button><mat-icon>details</mat-icon></button>
+
+          <button mat-icon-button (click)="deleteFeedback(feedback.id)">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,13 +1,9 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using API.Core.Entities;
 using API.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -24,9 +20,9 @@ namespace API.Controllers
 
         // GET: api/Feedback
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Feedback>>> FeedbackList()
+        public async Task<IActionResult> FeedbackList()
         {
-            return await _context.Feedback.ToListAsync();
+            return Ok(await _context.Feedback.Include(f => f.AppUser).OrderBy(o=> o.AppUserId).ToListAsync());
         }
 
         // GET: api/Feedback/5
@@ -41,6 +37,36 @@ namespace API.Controllers
             }
 
             return feedback;
+        }
+
+        [HttpGet("Check/{id}")]
+        public async Task<ActionResult<Feedback>> CheckFeedback(int id)
+        {
+            var feedback = await _context.Feedback.FindAsync(id);
+            Console.WriteLine("Debug this: " + feedback.FullName);
+
+            var email = User.FindFirstValue(ClaimTypes.Email);
+            Console.WriteLine("Debug this: " + email);
+
+            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            
+            Console.WriteLine("Debug this: " + user.UserName);
+
+            if(user == null){
+                return Unauthorized("User is not logged in");
+            }
+
+            if (feedback == null)
+            {
+                return NotFound();
+            }
+
+            feedback.AppUserId = user.Id;
+
+            _context.Update(feedback);
+            await _context.SaveChangesAsync();
+
+            return Ok(feedback);
         }
 
         // POST: api/Feedback

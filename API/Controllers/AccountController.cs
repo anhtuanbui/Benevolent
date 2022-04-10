@@ -47,8 +47,7 @@ namespace Server.Controllers
         {
             if (User?.Identity?.IsAuthenticated == false)
             {
-                ModelState.AddModelError("Errors", "No current user logged in.");
-                return NotFound(ModelState);
+                return NotFound("No current user logged in.");
             }
 
             var email = User.FindFirstValue(ClaimTypes.Email);
@@ -57,8 +56,7 @@ namespace Server.Controllers
 
             if (currentUser == null)
             {
-                ModelState.AddModelError("Errors", "Can't find this email");
-                return NotFound(ModelState);
+                return NotFound("Can't find this email");
             }
 
             return await _accountService.GenerateAuthUserAsync(currentUser);

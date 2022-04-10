@@ -190,12 +190,7 @@ namespace API.Data.Migrations
                     b.Property<int>("Position")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TagId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TagId");
 
                     b.ToTable("Tag");
                 });
@@ -490,7 +485,7 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Core.Entities.Page", b =>
                 {
                     b.HasOne("API.Core.Entities.AppUser", "AppUser")
-                        .WithMany("Pages")
+                        .WithMany()
                         .HasForeignKey("AppUserId");
 
                     b.HasOne("API.Core.Entities.Tag", "Tag")
@@ -502,13 +497,6 @@ namespace API.Data.Migrations
                     b.Navigation("AppUser");
 
                     b.Navigation("Tag");
-                });
-
-            modelBuilder.Entity("API.Core.Entities.Tag", b =>
-                {
-                    b.HasOne("API.Core.Entities.Tag", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("TagId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -560,16 +548,6 @@ namespace API.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("API.Core.Entities.AppUser", b =>
-                {
-                    b.Navigation("Pages");
-                });
-
-            modelBuilder.Entity("API.Core.Entities.Tag", b =>
-                {
-                    b.Navigation("Tags");
                 });
 #pragma warning restore 612, 618
         }

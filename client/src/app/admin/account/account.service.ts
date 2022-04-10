@@ -57,7 +57,7 @@ export class AccountService {
       .pipe(
         map((user: IUser) => {
           if (user.userName !== '') {
-            this.router.navigateByUrl('/admin/register-succeed');
+            this.router.navigateByUrl('/admin/register-succeeded');
           }
         })
       );

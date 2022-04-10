@@ -1,3 +1,4 @@
+import { FeedbackComponent } from './feedback/feedback.component';
 import { EditPageComponent } from './pages/edit-page/edit-page.component';
 import { EditTagComponent } from './tags/edit-tag/edit-tag.component';
 import { AddTagComponent } from './tags/add-tag/add-tag.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     children: [
+      { path: 'feedbacks', component: FeedbackComponent },
       { path: 'pages', component: PagesComponent },
       { path: 'tags', component: TagsComponent },
       { path: 'add-page', component: AddPageComponent },

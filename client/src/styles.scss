@@ -121,6 +121,63 @@ p {
   width: 100%;
 }
 
+
+// Style from pages
+.pages-title {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+
+  h1 {
+    margin-right: 20px;
+  }
+
+  mat-icon {
+    font-size: 2em;
+  }
+}
+
+.pages-content {
+  table {
+    width: 100%;
+  }
+
+  th,
+  td {
+    padding: 5px;
+    text-align: center;
+  }
+
+  td {
+    border-top: 1px solid $border-bottom-color;
+
+    img {
+      width: 80px;
+      height: 45px;
+      object-fit: cover;
+    }
+  }
+}
+
+.content-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 400px;
+  white-space: nowrap;
+}
+
+.title-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 250px;
+  white-space: nowrap;
+}
+
+.inline-block {
+  display: inline-block;
+}
+// End style from pages
+
 @media (max-width: 1340px) {
   .container {
     padding: 0 20px;

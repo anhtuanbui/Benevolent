@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { FeedbackService } from './../admin/feedback/feedback.service';
+import { FormGroup, FormControl } from '@angular/forms';
 // using swiper js && keen slider
 // documentation https://swiperjs.com/angular
 
@@ -47,7 +50,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   TABLET_BREAKPOINT = 960;
   PHONE_BREAKPOINT = 480;
- 
+
   innerWidth: any;
 
   slider?: KeenSliderInstance;
@@ -55,7 +58,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   currentSlide: number = 1;
   dotHelper: Array<Number> = [];
 
-  viewInKeenSlider:number = 3;
+  viewInKeenSlider: number = 3;
 
   cards: string[] = [
     'Translating services',
@@ -66,15 +69,16 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     'Feedback and complaints',
   ];
 
-  constructor() {}
+  feedbackForm: FormGroup = new FormGroup({});
+
+  constructor(private feedbackService:FeedbackService, private router:Router) {}
   ngAfterViewInit(): void {
-    
-    if (this.innerWidth < this.PHONE_BREAKPOINT){
+    if (this.innerWidth < this.PHONE_BREAKPOINT) {
       this.viewInKeenSlider = 1;
     } else if (this.innerWidth < this.TABLET_BREAKPOINT) {
       this.viewInKeenSlider = 2;
     } else {
-      this.viewInKeenSlider = 3
+      this.viewInKeenSlider = 3;
     }
     setTimeout(() => {
       this.slider = new KeenSlider(
@@ -131,11 +135,34 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit(): void {
     this.addMatchHeight();
     this.innerWidth = window.innerWidth;
+    this.createFeedbackForm();
   }
 
   ngOnDestroy(): void {
     this.removeMatchHeight();
     if (this.slider) this.slider.destroy();
+  }
+
+  createFeedbackForm() {
+    this.feedbackForm = new FormGroup({
+      fullName: new FormControl(''),
+      phoneNumber: new FormControl(''),
+      email: new FormControl(''),
+      surburb: new FormControl(''),
+      timeToCall: new FormControl(''),
+      message: new FormControl(''),
+    });
+  }
+
+  // Create and send feedback to admin
+  sendFeedback(values: any){
+    this.feedbackService.addFeedback(values).subscribe(()=>{
+      this.router.navigateByUrl('/send-feedback-success')
+    })
+  }
+
+  onFeedbackSubmit(){
+    this.sendFeedback(this.feedbackForm.value);
   }
 
   addMatchHeight() {
@@ -160,8 +187,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // set window size to innerWidth
   @HostListener('window:resize', ['$event'])
-  onResize(event:any) {
+  onResize(event: any) {
     this.innerWidth = window.innerWidth;
   }
-
 }
