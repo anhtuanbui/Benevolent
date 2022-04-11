@@ -105,7 +105,7 @@ namespace API.Controllers
             return Ok(page);
         }
 
-        [HttpGet("Delete/{id}")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

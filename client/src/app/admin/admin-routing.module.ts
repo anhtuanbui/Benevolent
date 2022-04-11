@@ -1,3 +1,4 @@
+import { DetailComponent } from './feedback/detail/detail.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { EditPageComponent } from './pages/edit-page/edit-page.component';
 import { EditTagComponent } from './tags/edit-tag/edit-tag.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: 'feedbacks', component: FeedbackComponent },
+      { path: 'feedback/detail/:id', component: DetailComponent },
       { path: 'pages', component: PagesComponent },
       { path: 'tags', component: TagsComponent },
       { path: 'add-page', component: AddPageComponent },

@@ -46,6 +46,6 @@ export class PagesService {
   }
 
   deletePage(id:number){
-    return this.http.get(this.baseUrl + `page/delete/${id}`);
+    return this.http.delete(this.baseUrl + `page/delete/${id}`);
   }
 }

@@ -47,7 +47,7 @@ export class TagsService {
   }
 
   deleteTag(id: number) {
-    return this.http.get(this.baseUrl + `tag/delete/${id}`);
+    return this.http.delete(this.baseUrl + `tag/delete/${id}`);
   }
 
 }
