@@ -35,7 +35,7 @@
           <button mat-icon-button (click)="checkFeedback(feedback.id)">
             <mat-icon>done</mat-icon>
           </button>
-          <button mat-icon-button><mat-icon>details</mat-icon></button>
+          <button mat-icon-button routerLink="/admin/feedback/detail/{{feedback.id}}"><mat-icon>details</mat-icon></button>
 
           <button mat-icon-button (click)="deleteFeedback(feedback.id)">
             <mat-icon>remove</mat-icon>

@@ -10,16 +10,18 @@ export class DetailComponent implements OnInit {
   id: number = 0;
   feedback: any;
 
-  constructor(private feedbackService: FeedbackService, private route:ActivatedRoute) {}
+  constructor(
+    private feedbackService: FeedbackService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
     this.getFeedback();
   }
 
   getFeedback() {
-    this.feedbackService.getFeedback(this.id).subscribe(() => {
-      this.feedback = this.feedbackService.feedback;
-    });
+    this.id = this.route.snapshot.params['id'];
+    this.feedbackService.getFeedback(this.id).subscribe();
+    this.feedback = this.feedbackService.feedbackValue();
   }
 }

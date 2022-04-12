@@ -7,9 +7,46 @@
     <table>
       <tr>
         <th>Full name</th>
-        <th>{{ feedback.fullName }}</th>
+        <td>: </td>
+        <td>{{ feedback.fullName }}</td>
+      </tr>
+      <tr>
+        <th>Received time</th>
+        <td>: </td>
+        <td>{{ feedback.receivedTime | date:'medium' }}</td>
+      </tr>
+
+      <tr>
+        <th>Phone number</th>
+        <td>: </td>
+        <td>{{ feedback.phoneNumber }}</td>
+      </tr>
+
+      <tr>
+        <th>Email</th>
+        <td>: </td>
+        <td>{{ feedback.email }}</td>
+      </tr>
+
+      <tr>
+        <th>Surburb</th>
+        <td>: </td>
+        <td>{{ feedback.surburb }}</td>
+      </tr>
+
+      <tr>
+        <th>Time to call</th>
+        <td>: </td>
+        <td>{{ feedback.timeToCall }}</td>
       </tr>
     </table>
   </div>
-  <div class="message"></div>
+  <div class="message">
+    <p class="message-title">Message</p>
+    <div class="message-content">
+      {{ feedback.message }}
+    </div>
+  </div>
 </div>
+
+<button class="btn-back" mat-button routerLink="/admin/feedbacks">Back</button>

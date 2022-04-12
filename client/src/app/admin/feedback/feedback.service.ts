@@ -49,4 +49,8 @@ export class FeedbackService {
   checkFeedback(id:number){
     return this.http.get(this.baseUrl + `feedback/check/${id}`);
   }
+
+  feedbackValue(){
+    return this.feedbackSource.value;
+  }
 }
