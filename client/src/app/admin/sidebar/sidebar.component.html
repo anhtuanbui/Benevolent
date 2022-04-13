@@ -5,7 +5,7 @@
       <li><a routerLink="/admin/pages">Pages</a></li>
       <li><a routerLink="/admin/tags">Tags</a></li>
       <li><a href="#">Members</a></li>
-      <li><a href="#">Roles</a></li>
+      <li><a href="/admin/role">Roles</a></li>
       <li><a routerLink="/admin/feedbacks">Feedback</a></li>
       <li *ngIf="(currentUser$ | async)!.userName !== ''">
         <a (click)="logout()">

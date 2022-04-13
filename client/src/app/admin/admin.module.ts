@@ -18,6 +18,9 @@ import { EditTagComponent } from './tags/edit-tag/edit-tag.component';
 import { EditPageComponent } from './pages/edit-page/edit-page.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { DetailComponent } from './feedback/detail/detail.component';
+import { RoleComponent } from './role/role.component';
+import { AddComponent } from './role/add/add.component';
+import { EditComponent } from './role/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,9 @@ import { DetailComponent } from './feedback/detail/detail.component';
     EditPageComponent,
     FeedbackComponent,
     DetailComponent,
+    RoleComponent,
+    AddComponent,
+    EditComponent,
   ],
   imports: [
     CommonModule,

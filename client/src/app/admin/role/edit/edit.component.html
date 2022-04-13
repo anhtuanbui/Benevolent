@@ -1,0 +1,14 @@
+<div class="pages-title">
+    <h1>Edit role</h1>
+  </div>
+  
+  <form class="add-form" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label for="name">Role name</mat-label>
+      <input id="name" formControlName="name" matInput />
+    </mat-form-field>
+  
+  
+    <button mat-button>Submit</button>
+  </form>
+  
