@@ -27,6 +27,9 @@ builder.Services.AddDbContext<AppIdentityDbContext>(options =>
 });
 
 builder.Services.AddDefaultIdentity<AppUser>()
+    .AddRoles<AppRole>()
+    .AddRoleValidator<RoleValidator<AppRole>>()
+    .AddRoleManager<RoleManager<AppRole>>()
     .AddEntityFrameworkStores<AppIdentityDbContext>()
     .AddSignInManager<SignInManager<AppUser>>();
 
@@ -67,8 +70,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecretKey"]))
     };
 });
-
-
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

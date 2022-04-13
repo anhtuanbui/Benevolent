@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Server.Controllers
 {
@@ -29,15 +30,8 @@ namespace Server.Controllers
             _accountService = accountService;
         }
 
-        
-        [HttpGet("auth")]
-        [Authorize]
-        public ActionResult<string> TestAuth(){
-            return "Show auth";
-        }
-
         [HttpGet]
-        public async Task<IActionResult> PageList()
+        public async Task<IActionResult> ToList()
         {
             return Ok(await _context.Users!.ToListAsync());
         }
@@ -47,7 +41,7 @@ namespace Server.Controllers
         {
             if (User?.Identity?.IsAuthenticated == false)
             {
-                return NotFound("No current user logged in.");
+                return Unauthorized("No current user logged in.");
             }
 
             var email = User.FindFirstValue(ClaimTypes.Email);
@@ -56,7 +50,7 @@ namespace Server.Controllers
 
             if (currentUser == null)
             {
-                return NotFound("Can't find this email");
+                return Unauthorized("Can't find this email");
             }
 
             return await _accountService.GenerateAuthUserAsync(currentUser);

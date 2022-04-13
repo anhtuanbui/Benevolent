@@ -2,6 +2,7 @@
 using API.Core.Models;
 using API.Data;
 using API.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -13,9 +14,11 @@ namespace API.Infrastructure.Services
     {
         private readonly IConfiguration _config;
         private readonly AppIdentityDbContext _dbContext;
+        private readonly UserManager<AppUser> _userManager;
 
-        public AccountService(IConfiguration config, AppIdentityDbContext dbContext)
+        public AccountService(IConfiguration config, AppIdentityDbContext dbContext, UserManager<AppUser> userManager)
         {
+            _userManager = userManager;
             _config = config;
             _dbContext = dbContext;
         }
@@ -28,9 +31,19 @@ namespace API.Infrastructure.Services
             var issuer = _config["ClaimSettings:Issuer"];
             var audience = _config["ClaimSettings:Audience"];
 
+            var roles = await _userManager.GetRolesAsync(user);
+
             var claimEmail = new Claim(ClaimTypes.Email, user.Email);
             var claimUserName = new Claim(ClaimTypes.NameIdentifier, user.UserName);
-            var claimsIdentity = new ClaimsIdentity(new[] { claimUserName, claimEmail }, "serverAuth");
+
+            var claims = new List<Claim>{
+                claimEmail,
+                claimUserName
+            };
+
+            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
+
+            var claimsIdentity = new ClaimsIdentity(claims, "serverAuth");
 
             var tokenHandler = new JwtSecurityTokenHandler();
 
