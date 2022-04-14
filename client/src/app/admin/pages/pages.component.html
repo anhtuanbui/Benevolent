@@ -8,9 +8,8 @@
 <div class="pages-content">
   <table>
     <tr>
-      <th>Id</th>
-      <th>Image</th>
       <th>Title</th>
+      <th>Image</th>
       <th>Tag</th>
       <th>Created Time</th>
       <th>Author</th>
@@ -19,12 +18,11 @@
       <th>Action</th>
     </tr>
     <tr *ngFor="let page of pages">
-      <td>{{ page.id }}</td>
-      <td>
-        <img [src]="page.imageUrl" alt="Children" />
-      </td>
       <td style="text-align: left">
         <div class="title-text">{{ page.title }}</div>
+      </td>
+      <td>
+        <img [src]="page.imageUrl" alt="Children" />
       </td>
 
       <td>{{ page.tag.name }}</td>

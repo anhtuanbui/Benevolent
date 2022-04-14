@@ -21,6 +21,8 @@ import { DetailComponent } from './feedback/detail/detail.component';
 import { RoleComponent } from './role/role.component';
 import { AddComponent } from './role/add/add.component';
 import { EditComponent } from './role/edit/edit.component';
+import { MemberComponent } from './member/member.component';
+import { AssignRoleComponent } from './member/assign-role/assign-role.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { EditComponent } from './role/edit/edit.component';
     RoleComponent,
     AddComponent,
     EditComponent,
+    MemberComponent,
+    AssignRoleComponent,
   ],
   imports: [
     CommonModule,

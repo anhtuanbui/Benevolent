@@ -1,3 +1,5 @@
+import { AssignRoleComponent } from './member/assign-role/assign-role.component';
+import { MemberComponent } from './member/member.component';
 import { EditComponent } from './role/edit/edit.component';
 import { RoleComponent } from './role/role.component';
 import { DetailComponent } from './feedback/detail/detail.component';
@@ -21,6 +23,8 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     children: [
+      { path: 'member', component: MemberComponent },
+      { path: 'member/assign-role/:id', component: AssignRoleComponent },
       { path: 'role', component: RoleComponent },
       { path: 'role/add', component: AddComponent },
       { path: 'role/edit/:id', component: EditComponent },

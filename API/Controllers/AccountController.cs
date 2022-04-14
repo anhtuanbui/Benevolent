@@ -30,11 +30,6 @@ namespace Server.Controllers
             _accountService = accountService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> ToList()
-        {
-            return Ok(await _context.Users!.ToListAsync());
-        }
 
         [HttpGet("CurrentUser")]
         public async Task<ActionResult<AuthUser>> CurrentUser()
@@ -134,9 +129,11 @@ namespace Server.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new AppUser();
-            user.UserName = register.UserName;
-            user.Email = register.Email;
+            var user = new AppUser
+            {
+                UserName = register.UserName,
+                Email = register.Email
+            };
 
             var result = await _userManager.CreateAsync(user, register.Password);
 

@@ -27,6 +27,12 @@ namespace API.Controllers
                 .ToListAsync());
         }
 
+        [HttpGet("PublicPage")]
+        public async Task<IActionResult> PublicPage()
+        {
+            return Ok(await _context.Page!.Include(a => a.Tag).ToListAsync());
+        }
+
 
         [HttpGet("Detail/{id}")]
         public async Task<IActionResult> PageDetail(int? id)

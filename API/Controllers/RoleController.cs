@@ -28,7 +28,6 @@ namespace API.Controllers
         public async Task<IActionResult> AddRole(Role role)
         {
             var roleExist = await _roleManager.RoleExistsAsync(role.Name);
-            Console.WriteLine("Debug this: ");
             
             if (roleExist)
             {

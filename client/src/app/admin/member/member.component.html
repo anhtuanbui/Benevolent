@@ -1,0 +1,38 @@
+<div class="pages-title">
+  <h1>Member</h1>
+  <button routerLink="/admin/sign-up" mat-icon-button>
+    <mat-icon>add_circle_outline</mat-icon>
+  </button>
+</div>
+
+<div class="pages-content">
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>Role</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let member of members">
+      <td>{{ member.userName }}</td>
+      <td>
+        <span *ngFor="let role of member.roles">{{ role }}</span>
+      </td>
+      <td>{{ member.email }}</td>
+
+      <td>
+        <div class="inline-block">
+          <button
+            mat-icon-button
+            routerLink="/admin/member/assign-role/{{ member.id }}"
+          >
+            <mat-icon>assignment_ind</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deletePage(member.id)">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
