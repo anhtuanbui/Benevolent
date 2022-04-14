@@ -1,26 +1,11 @@
 <div class="container page-info-box">
   <div class="info-box">
-    <div class="page-info-left">
-      <img src="/assets/images/grid-card5.jpg" alt="demo image" />
+    <div class="page-info-left" *ngIf="page">
+      <img [src]="page.imageUrl" alt="demo image" />
 
       <div class="page-info">
-        <h1>Translating service</h1>
-        <div>
-          <p>
-            If English is not your first language, you can have an interpreter.
-          </p>
-
-          <p>You can do this by</p>
-          <ul>
-            <ol>
-              - Calling our Support Centre in 180 236 762, and ask for an
-              interpreter,
-            </ol>
-            <ol>
-              - Call ‘TIS’ (Translating and Interpreting service) on 131 450 and
-              they can put you through to us.
-            </ol>
-          </ul>
+        <h1>{{ page.title }}</h1>
+        <div [innerHTML]="page.content">
         </div>
       </div>
     </div>

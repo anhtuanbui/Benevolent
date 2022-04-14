@@ -13,41 +13,17 @@
           ></div>
           <a [routerLink]="['']" routerLinkActive="link-active-white">Home</a>
         </li>
-        <li>
-          <div class="nav-item-background bg-orange"></div>
-          <a href="#">Services</a>
+        <li *ngFor="let tag of tags">
+          <div class="nav-item-background bg-color{{tag.position%6}}"></div>
+          <a style="cursor: pointer;">{{tag.name}}</a>
 
-          <ul class="bg-orange">
-            <li>
-              <a routerLink="info"
-                >Translating services</a
-              >
+          <ul class="bg-color{{tag.position%6}}">
+            <li *ngFor="let page of getPagesOfTag(tag.name)">
+              <a style="cursor: pointer;" (click)="navigateTo(page.id)">{{page.title}}</a>
             </li>
           </ul>
         </li>
-        <li>
-          <div class="nav-item-background bg-pink"></div>
-          <a target="_blank" href="https://www.benevolent.org.au/about-us"
-            >What we do</a
-          >
-          <ul class="bg-pink">
-            <li>
-              <a target="_blank" href="https://www.benevolent.org.au/about-us"
-                >Our commitment to your safety and wellbeing.</a
-              >
-            </li>
-            <li>
-              <a target="_blank" href="https://www.benevolent.org.au/about-us"
-                >Your right and responsibilities</a
-              >
-            </li>
-            <li>
-              <a target="_blank" href="https://www.benevolent.org.au/about-us"
-                >Our Commitment to LGBTQI+ community</a
-              >
-            </li>
-          </ul>
-        </li>
+        
         <li>
           <div class="nav-item-background bg-blue"></div>
           <a href="#contact">Contact Us</a>

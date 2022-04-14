@@ -26,6 +26,9 @@ export class TagsService {
     return this.http.post(this.baseUrl + `tag/edit/${id}`, values);
   }
 
+  returnTags(){
+    return this.tagsSource.value;
+  }
 
   getTags() {
     return this.http.get(this.baseUrl + 'tag/list').pipe(

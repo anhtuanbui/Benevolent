@@ -9,8 +9,9 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'info',
+    path: 'page/:id',
     component: InfoPageComponent,
+    pathMatch: 'full',
   },
   {
     path: 'send-feedback-success',

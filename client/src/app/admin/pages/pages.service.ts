@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { IPage, Page } from './../../shared/models/page';
 import { BehaviorSubject, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -17,7 +18,9 @@ export class PagesService {
   page$ = this.pagesSource.asObservable();
   page: any;
 
-  constructor(private http: HttpClient) {}
+  pagesImageSanitized: IPage[] = [];
+
+  constructor(private http: HttpClient, private sanitizer:DomSanitizer) {}
 
   getPages() {
     return this.http.get(this.baseUrl + 'page').pipe(
@@ -27,6 +30,20 @@ export class PagesService {
       })
     );
   }
+
+  getPagesWithSanitizedImage() {
+    return this.http.get(this.baseUrl + 'page').pipe(
+      map((page: any) => {
+        this.pagesSource.next(page);
+        this.pagesImageSanitized = this.pagesSource.value;
+        this.pagesImageSanitized.forEach((page) => {
+          page.imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64, ' + page.imageUrl);
+        })
+        // console.log(this.pagesImageSanitized);
+      })
+    );
+  }
+
 
   getPage(id: number) {
     return this.http.get(this.baseUrl + `page/detail/${id}`).pipe(

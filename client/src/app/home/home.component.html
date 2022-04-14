@@ -77,18 +77,16 @@
   </div>
 </div>
 
-
-
-<div class="container">
+<div class="container" >
   <div class="navigation-wrapper">
-    <div class="keen-slider keen-slider--vertical" #sliderRef>
+    <div class="keen-slider keen-slider--vertical" #sliderRef >
       <div
         class="keen-slider__slide scroll-box-card"
-        *ngFor="let card of cards; index as i"
+        *ngFor="let page of pages; index as i" routerLink="/page/{{page.id}}"
       >
-        <img src="/assets/images/grid-card{{ i }}.jpg" alt="children" />
-        <div class="scroll-box-card-textbox bg-color{{ i }}">
-          <p>{{ card }}</p>
+        <img [src]="page.imageUrl" alt="children image demo" />
+        <div class="scroll-box-card-textbox bg-color{{ i%6 }}">
+          <p>{{ page.title }}</p>
           <button mat-button>read more</button>
         </div>
       </div>
@@ -140,7 +138,11 @@
   <div class="container contact-container">
     <h1>We want to hear from you</h1>
 
-    <form class="contact-form" [formGroup]="feedbackForm" (ngSubmit)="onFeedbackSubmit()">
+    <form
+      class="contact-form"
+      [formGroup]="feedbackForm"
+      (ngSubmit)="onFeedbackSubmit()"
+    >
       <div class="contact-form-field">
         <label class="form-label" for="">Full name</label>
         <input formControlName="fullName" type="text" name="FullName" />
@@ -166,7 +168,11 @@
           <label class="form-label" for="">Your message</label>
           <button mat-button>Submit</button>
         </div>
-        <textarea formControlName="message" type="text" name="Message"></textarea>
+        <textarea
+          formControlName="message"
+          type="text"
+          name="Message"
+        ></textarea>
       </div>
     </form>
   </div>

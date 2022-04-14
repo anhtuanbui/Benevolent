@@ -12,7 +12,7 @@ export interface IPage {
 export class Page {
   id: number = 0;
   title: string = '';
-  imageUrl: string = '';
+  imageUrl: any;
   createdTime: Date = new Date();
   content: string = '';
   isPublic: boolean = false;

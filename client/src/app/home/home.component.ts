@@ -1,3 +1,4 @@
+import { PagesService } from './../admin/pages/pages.service';
 import { Router } from '@angular/router';
 import { FeedbackService } from './../admin/feedback/feedback.service';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -27,6 +28,7 @@ import SwiperCore, {
   Lazy,
 } from 'swiper';
 import { AutoplayOptions } from 'swiper/types';
+import { IPage } from '../shared/models/page';
 
 SwiperCore.use([
   Virtual,
@@ -69,10 +71,88 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     'Feedback and complaints',
   ];
 
+  pages: IPage[] = [];
+
+  pagesLoaded?: Promise<boolean>;
+
   feedbackForm: FormGroup = new FormGroup({});
 
-  constructor(private feedbackService:FeedbackService, private router:Router) {}
+  constructor(
+    private feedbackService: FeedbackService,
+    private router: Router,
+    private pagesService: PagesService
+  ) {}
+  ngOnInit(): void {
+    this.getPages();
+    this.addMatchHeight();
+    this.innerWidth = window.innerWidth;
+    this.createFeedbackForm();
+  }
+
   ngAfterViewInit(): void {
+  }
+  
+  ngOnDestroy(): void {
+    this.removeMatchHeight();
+    if (this.slider) this.slider.destroy();
+  }
+  
+  getPages() {
+    this.pagesService.getPagesWithSanitizedImage().subscribe(() => {
+      this.pages = this.pagesService.pagesImageSanitized;
+      this.setSlider();
+    });
+  }
+
+  createFeedbackForm() {
+    this.feedbackForm = new FormGroup({
+      fullName: new FormControl(''),
+      phoneNumber: new FormControl(''),
+      email: new FormControl(''),
+      surburb: new FormControl(''),
+      timeToCall: new FormControl(''),
+      message: new FormControl(''),
+    });
+  }
+
+  // Create and send feedback to admin
+  sendFeedback(values: any) {
+    this.feedbackService.addFeedback(values).subscribe(() => {
+      this.router.navigateByUrl('/send-feedback-success');
+    });
+  }
+
+  onFeedbackSubmit() {
+    this.sendFeedback(this.feedbackForm.value);
+  }
+
+  addMatchHeight() {
+    window.addEventListener('resize', () => {
+      this.cardHeightCalc();
+    });
+  }
+
+  removeMatchHeight() {
+    window.removeEventListener('resize', () => {
+      this.cardHeightCalc();
+    });
+  }
+
+  cardHeightCalc() {
+    const cards = document.querySelectorAll<HTMLElement>('.scroll-box-card');
+    cards.forEach((item) => {
+      let height = (item.offsetWidth * 320) / 420;
+      item.style.height = height + 'px';
+    });
+  }
+
+  // set window size to innerWidth
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.innerWidth = window.innerWidth;
+  }
+
+  setSlider() {
     if (this.innerWidth < this.PHONE_BREAKPOINT) {
       this.viewInKeenSlider = 1;
     } else if (this.innerWidth < this.TABLET_BREAKPOINT) {
@@ -130,64 +210,5 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         ...Array(this.slider.track.details.slides.length).keys(),
       ];
     });
-  }
-
-  ngOnInit(): void {
-    this.addMatchHeight();
-    this.innerWidth = window.innerWidth;
-    this.createFeedbackForm();
-  }
-
-  ngOnDestroy(): void {
-    this.removeMatchHeight();
-    if (this.slider) this.slider.destroy();
-  }
-
-  createFeedbackForm() {
-    this.feedbackForm = new FormGroup({
-      fullName: new FormControl(''),
-      phoneNumber: new FormControl(''),
-      email: new FormControl(''),
-      surburb: new FormControl(''),
-      timeToCall: new FormControl(''),
-      message: new FormControl(''),
-    });
-  }
-
-  // Create and send feedback to admin
-  sendFeedback(values: any){
-    this.feedbackService.addFeedback(values).subscribe(()=>{
-      this.router.navigateByUrl('/send-feedback-success')
-    })
-  }
-
-  onFeedbackSubmit(){
-    this.sendFeedback(this.feedbackForm.value);
-  }
-
-  addMatchHeight() {
-    window.addEventListener('resize', () => {
-      this.cardHeightCalc();
-    });
-  }
-
-  removeMatchHeight() {
-    window.removeEventListener('resize', () => {
-      this.cardHeightCalc();
-    });
-  }
-
-  cardHeightCalc() {
-    const cards = document.querySelectorAll<HTMLElement>('.scroll-box-card');
-    cards.forEach((item) => {
-      let height = (item.offsetWidth * 320) / 420;
-      item.style.height = height + 'px';
-    });
-  }
-
-  // set window size to innerWidth
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.innerWidth = window.innerWidth;
   }
 }
