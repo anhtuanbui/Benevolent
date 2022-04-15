@@ -1,7 +1,7 @@
 <div class="scroll-box-card">
-  <img src="/assets/images/grid-card{{ cardNumber }}.jpg" alt="children" />
-  <div class="scroll-box-card-textbox bg-color{{ cardNumber }}">
-    <p>{{ cardTitle }}</p>
+  <img [src]="page.imageUrl" alt="children" />
+  <div class="scroll-box-card-textbox bg-color{{ page.id%6 }}">
+    <p>{{ page.title }}</p>
     <button mat-button>read more</button>
   </div>
 </div>

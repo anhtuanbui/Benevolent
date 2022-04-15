@@ -15,6 +15,9 @@ export class InfoPageComponent implements OnInit {
 
   page: any;
 
+  pagesInOtherTopics:any;
+  pagesForCategories:any;
+
   @HostListener('window:resize', ['$event']) onResize(event: any) {
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
@@ -31,6 +34,8 @@ export class InfoPageComponent implements OnInit {
     this.innerHeight = window.innerHeight;
 
     this.getPage();
+    this.getPagesInOtherTopic();
+    this.getPagesForCategories();
   }
 
   getPage() {
@@ -43,6 +48,18 @@ export class InfoPageComponent implements OnInit {
           'data:image/jpg;base64, ' + this.page.imageUrl
         );
       }
+    });
+  }
+
+  getPagesInOtherTopic(){
+    this.pagesService.getPagesWithSanitizedImage().subscribe(()=> {
+      this.pagesInOtherTopics = this.pagesService.pagesImageSanitized.filter(p => p.id != this.id).slice(0,3);
+    });
+  }
+
+  getPagesForCategories(){
+    this.pagesService.getPages().subscribe(()=> {
+      this.pagesForCategories = this.pagesService.pages.filter(p => p.tagId == this.page.tagId).slice(0, 10);
     });
   }
 }

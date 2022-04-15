@@ -1,3 +1,4 @@
+import { AuthGuard } from './../shared/guards/auth.guard';
 import { AssignRoleComponent } from './member/assign-role/assign-role.component';
 import { MemberComponent } from './member/member.component';
 import { EditComponent } from './role/edit/edit.component';
@@ -23,23 +24,51 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     children: [
-      { path: 'member', component: MemberComponent },
-      { path: 'member/assign-role/:id', component: AssignRoleComponent },
-      { path: 'role', component: RoleComponent },
-      { path: 'role/add', component: AddComponent },
-      { path: 'role/edit/:id', component: EditComponent },
-      { path: 'feedbacks', component: FeedbackComponent },
-      { path: 'feedback/detail/:id', component: DetailComponent },
-      { path: 'pages', component: PagesComponent },
-      { path: 'tags', component: TagsComponent },
-      { path: 'add-page', component: AddPageComponent },
-      { path: 'edit-page/:id', component: EditPageComponent },
-      { path: 'add-tag', component: AddTagComponent },
-      { path: 'edit-tag/:id', component: EditTagComponent },
+      { path: 'member', canActivate: [AuthGuard], component: MemberComponent },
+      {
+        path: 'member/assign-role/:id',
+        canActivate: [AuthGuard],
+        component: AssignRoleComponent,
+      },
+      { path: 'role', canActivate: [AuthGuard], component: RoleComponent },
+      { path: 'role/add', canActivate: [AuthGuard], component: AddComponent },
+      {
+        path: 'role/edit/:id',
+        canActivate: [AuthGuard],
+        component: EditComponent,
+      },
+      {
+        path: 'feedbacks',
+        canActivate: [AuthGuard],
+        component: FeedbackComponent,
+      },
+      {
+        path: 'feedback/detail/:id',
+        canActivate: [AuthGuard],
+        component: DetailComponent,
+      },
+      { path: 'pages', canActivate: [AuthGuard], component: PagesComponent },
+      { path: 'tags', canActivate: [AuthGuard], component: TagsComponent },
+      {
+        path: 'add-page',
+        canActivate: [AuthGuard],
+        component: AddPageComponent,
+      },
+      {
+        path: 'edit-page/:id',
+        canActivate: [AuthGuard],
+        component: EditPageComponent,
+      },
+      { path: 'add-tag', canActivate: [AuthGuard], component: AddTagComponent },
+      {
+        path: 'edit-tag/:id',
+        canActivate: [AuthGuard],
+        component: EditTagComponent,
+      },
       { path: 'sign-in', component: SignInComponent },
       { path: 'sign-up', component: SignUpComponent },
       { path: 'register-succeeded', component: RegisterSucceededComponent },
-    ], 
+    ],
   },
 ];
 

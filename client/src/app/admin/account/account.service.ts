@@ -45,7 +45,6 @@ export class AccountService {
         if (user.userName !== '') {
           localStorage.setItem('token', user.token);
           this.currentUserSource.next(user);
-          this.router.navigateByUrl('/admin/pages');
         }
       })
     );

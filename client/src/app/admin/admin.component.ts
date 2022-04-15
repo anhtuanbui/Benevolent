@@ -1,5 +1,6 @@
+import { IUser } from './../shared/models/user';
+import { Observable } from 'rxjs';
 import { AccountService } from './account/account.service';
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,24 +8,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
 })
-export class AdminComponent implements OnInit {
-  constructor(private router: Router, private accountService: AccountService) {}
 
-  isLogin = false;
+export class AdminComponent implements OnInit {
+  currentUser$?: Observable<IUser>;
+  constructor(private accountService:AccountService) {}
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
-
-    if(token){
-      this.accountService.loadCurrentUser(token).subscribe(() => {
-        this.isLogin = true;
-      });
-    }
-
-    // if (this.isLogin === false) {
-    //   this.router.navigateByUrl('/admin/sign-in');
-    // }else{
-    //   this.router.navigateByUrl('/admin/pages');
-    // }
+    this.currentUser$ = this.accountService.currentUser$;
   }
 }

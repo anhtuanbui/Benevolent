@@ -1,12 +1,13 @@
-﻿using API.Core.Entities;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using API.Core.Entities;
 using API.Core.Models;
 using API.Data;
 using API.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace API.Infrastructure.Services
 {
@@ -59,7 +60,9 @@ namespace API.Infrastructure.Services
             var securityToken = tokenHandler.CreateToken(tokenDescriptor);
             var token = tokenHandler.WriteToken(securityToken);
 
-            return await Task.FromResult(new AuthUser(user.UserName, user.Email, token, true));
+            var isAuthenticated = true;
+
+            return await Task.FromResult(new AuthUser(user.UserName, user.Email, token, isAuthenticated));
         }
 
         public async Task<AuthUser> ValidateJwtTokenAsync(string token)
@@ -91,7 +94,9 @@ namespace API.Infrastructure.Services
             if (user == null)
                 return await Task.FromResult(new AuthUser());
 
-            return await Task.FromResult(new AuthUser(user.UserName, user.Email, token, true));
+            var isAuthenticated = true;
+
+            return await Task.FromResult(new AuthUser(user.UserName, user.Email, token, isAuthenticated));
 
         }
     }

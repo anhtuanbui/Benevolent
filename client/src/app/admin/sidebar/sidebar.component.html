@@ -15,6 +15,14 @@
           </div>
         </a>
       </li>
+      <li *ngIf="(currentUser$ | async)!.userName == ''">
+        <a routerLink="sign-in">
+          <div class="logout">
+            <mat-icon>login</mat-icon>
+            <span>Sign in</span>
+          </div>
+        </a>
+      </li>
     </ul>
   </div>
 </div>

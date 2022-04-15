@@ -1,14 +1,17 @@
 @import "../../colors.scss";
 @import "../../functions.scss";
 
+
 .scroll-box-card {
   position: relative;
   cursor: pointer;
   overflow: hidden;
   width: 100%;
+  height: 280px;
 
   img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 

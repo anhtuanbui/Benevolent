@@ -3,6 +3,10 @@
     <bnv-sidebar></bnv-sidebar>
   </div>
   <div class="admin-right">
+    <div class="welcome-admin" *ngIf="(currentUser$ | async)?.isAuthenticated == false">
+      <h1>Welcome to Benevolent society</h1>
+      <p>Please sign in to use admin panel</p>
+    </div>
     <router-outlet></router-outlet>
   </div>
 </div>
