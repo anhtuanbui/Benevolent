@@ -16,7 +16,7 @@
     <tr *ngFor="let member of members">
       <td>{{ member.userName }}</td>
       <td>
-        <span *ngFor="let role of member.roles">{{ role }}</span>
+        <span *ngFor="let role of member.roles; let i = index">{{i > 0 ? ',' : ''}} {{ role }}</span>
       </td>
       <td>{{ member.email }}</td>
 

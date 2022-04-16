@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using API.Core.Entities;
 using API.Core.Models;
 using API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class MemberController : ControllerBase
@@ -86,6 +88,34 @@ namespace API.Controllers
             }
 
             return Ok(await _userManager.AddToRoleAsync(user, role.Name));
+        }
+
+        [HttpPost("RemoveRole")]
+        public async Task<IActionResult> RemoveRole(AssignRole assignRole)
+        {
+            if (assignRole.MemberId == null || assignRole.RoleId == null)
+            {
+                return BadRequest("Null member id or role id");
+            }
+
+            var user = await _context.Users.FindAsync(assignRole.MemberId);
+            var role = await _context.Roles.FindAsync(assignRole.RoleId);
+
+            if (user == null || role == null)
+            {
+                return BadRequest("Can not find user or role");
+            }
+
+            try
+            {
+                await _userManager.RemoveFromRoleAsync(user, role.Name);
+            }
+            catch
+            {
+                throw new ArgumentException("Can not remove this role");
+            }
+
+            return Ok();
         }
 
         [HttpDelete("Delete/{id}")]

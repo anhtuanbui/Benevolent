@@ -16,3 +16,24 @@
 
   <button mat-button>Submit</button>
 </form>
+
+<hr>
+
+<div class="pages-title">
+  <h1>Remove role for {{ member ? member.userName : '' }}</h1>
+</div>
+
+<form class="add-form" [formGroup]="assignRoleForm" (ngSubmit)="onRemoveRole()">
+  <mat-form-field appearance="outline">
+    <mat-label>Role</mat-label>
+    <mat-select formControlName="roleId">
+      <mat-option *ngFor="let role of roles" value="{{ role.id }}">{{
+        role.name
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br />
+
+  <button mat-button>Submit</button>
+</form>

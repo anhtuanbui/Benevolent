@@ -1,5 +1,6 @@
 <div class="side-bar">
   <h2>Admin Panel</h2>
+  <h4 class="welcome-text" *ngIf="(currentUser$ | async)!.userName !== ''">Welcome {{(currentUser$ | async)!.userName}}</h4>
   <div class="side-bar-nav">
     <ul>
       <li><a routerLink="/admin/pages">Pages</a></li>

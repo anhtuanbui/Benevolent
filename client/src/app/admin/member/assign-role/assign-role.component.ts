@@ -58,4 +58,13 @@ export class AssignRoleComponent implements OnInit {
       this.router.navigateByUrl('/admin/member');
     });
   }
+
+  onRemoveRole(){
+    this.assignRole.memberId = this.route.snapshot.params['id'];
+    this.assignRole.roleId = this.assignRoleForm.value.roleId;
+    // console.log(this.assignRole);
+    this.memberService.removeRole(this.assignRole).subscribe(() => {
+      this.router.navigateByUrl('/admin/member');
+    });
+  }
 }

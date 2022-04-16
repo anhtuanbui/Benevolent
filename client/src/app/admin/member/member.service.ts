@@ -49,6 +49,10 @@ export class MemberService {
     return this.http.post(this.baseUrl + `member/assignrole`, values);
   }
 
+  removeRole(values: any) {
+    return this.http.post(this.baseUrl + `member/removeRole`, values);
+  }
+
   deleteMember(id:number){
     return this.http.delete(this.baseUrl + `member/delete/${id}`);
   }

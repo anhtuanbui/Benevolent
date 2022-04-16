@@ -1,5 +1,13 @@
 @import '../../../shared/colors.scss';
 
+
+hr {
+    background-color: $border-bottom-color;
+    height: 1px;
+    border: 0;
+    margin-top: 50px;
+}
+
 .add-form {
     margin-top: 30px;
     font-size: 16px;
