@@ -438,6 +438,12 @@ $slide-show-height: 600px;
 }
 
 @media (max-width: 480px) {
+  .about-container {
+    p {
+      width: auto;
+    }
+  }
+
   .contact-container {
     h1 {
       font-size: 1.8em;
@@ -448,3 +454,4 @@ $slide-show-height: 600px;
     width: 100%;
   }
 }
+

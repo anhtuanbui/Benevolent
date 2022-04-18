@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class PageController : ControllerBase
@@ -19,6 +20,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> PageList()
         {
             return Ok(await _context.Page!
@@ -27,6 +29,7 @@ namespace API.Controllers
                 .ToListAsync());
         }
 
+        [AllowAnonymous]
         [HttpGet("PublicPage")]
         public async Task<IActionResult> PublicPage()
         {

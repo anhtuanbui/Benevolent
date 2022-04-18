@@ -7,11 +7,13 @@ using API.Core.DTO;
 using API.Core.Entities;
 using API.Data;
 using Duende.IdentityServer.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class TagController : ControllerBase

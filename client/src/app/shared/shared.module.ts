@@ -4,7 +4,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
-import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-menu.component';
 import { CardComponent } from './components/card/card.component';
 import { ShowResultComponent } from './components/show-result/show-result.component';
 
@@ -13,7 +12,6 @@ import { ShowResultComponent } from './components/show-result/show-result.compon
     HeaderComponent,
     FooterComponent,
     CallBtnComponent,
-    HamburgerMenuComponent,
     CardComponent,
     ShowResultComponent,
   ],
