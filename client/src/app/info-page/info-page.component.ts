@@ -11,12 +11,12 @@ export class InfoPageComponent implements OnInit {
   innerWidth: any;
   innerHeight: any;
 
-  id = 0;
+  id: any;
 
   page: any;
 
-  pagesInOtherTopics:any;
-  pagesForCategories:any;
+  pagesInOtherTopics: any;
+  pagesForCategories: any;
 
   @HostListener('window:resize', ['$event']) onResize(event: any) {
     this.innerWidth = window.innerWidth;
@@ -27,19 +27,23 @@ export class InfoPageComponent implements OnInit {
     private route: ActivatedRoute,
     private pagesService: PagesService,
     private sanitizer: DomSanitizer,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
 
-    this.getPage();
-    this.getPagesInOtherTopic();
-    this.getPagesForCategories();
+    this.route.paramMap.subscribe((params) => {
+      this.id = params.get('id');
+
+      this.getPage();
+      this.getPagesInOtherTopic();
+      this.getPagesForCategories();
+    });
   }
 
   getPage() {
-    this.id = this.route.snapshot.params['id'];
     this.pagesService.getPage(this.id).subscribe(() => {
       this.page = this.pagesService.page;
 
@@ -51,15 +55,20 @@ export class InfoPageComponent implements OnInit {
     });
   }
 
-  getPagesInOtherTopic(){
-    this.pagesService.getPagesWithSanitizedImage().subscribe(()=> {
-      this.pagesInOtherTopics = this.pagesService.pagesImageSanitized.filter(p => p.id != this.id).slice(0,3);
+  getPagesInOtherTopic() {
+    this.pagesService.getPagesWithSanitizedImage().subscribe(() => {
+      this.pagesInOtherTopics = this.pagesService.pagesImageSanitized
+        .filter((p) => p.id != this.id)
+        .slice(0, 3);
     });
   }
 
-  getPagesForCategories(){
-    this.pagesService.getPages().subscribe(()=> {
-      this.pagesForCategories = this.pagesService.pages.filter(p => p.tagId == this.page.tagId).slice(0, 10);
+  getPagesForCategories() {
+    this.pagesService.getPages().subscribe(() => {
+      this.pagesForCategories = this.pagesService.pages
+        .filter((p) => p.tagId == this.page.tagId)
+        .slice(0, 10);
     });
   }
+
 }

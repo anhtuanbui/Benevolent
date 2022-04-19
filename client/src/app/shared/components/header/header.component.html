@@ -1,6 +1,6 @@
 <div class="header">
   <div class="header-wrap container">
-    <a href="/"><img class="logo" src="/assets/images/LogoFull.png" /></a>
+    <a routerLink="/"><img class="logo" src="/assets/images/LogoFull.png" /></a>
 
     <!-- This div appears if the screen is bigger or equal to 1300 -->
     <div class="navigation" *ngIf="innerWidth >= BREAK_POINT_1">
@@ -13,13 +13,13 @@
           ></div>
           <a [routerLink]="['']" routerLinkActive="link-active-white">Home</a>
         </li>
-        <li *ngFor="let tag of tags">
+        <li *ngFor="let tag of (tags | async)">
           <div class="nav-item-background bg-color{{ tag.position % 6 }}"></div>
           <a style="cursor: pointer">{{ tag.name }}</a>
 
           <ul class="bg-color{{ tag.position % 6 }}">
             <li *ngFor="let page of getPagesOfTag(tag.name)">
-              <a style="cursor: pointer" (click)="navigateTo(page.id)">{{
+              <a routerLink="/page/{{page.id}}">{{
                 page.title
               }}</a>
             </li>
@@ -58,7 +58,7 @@
                 white-space: normal;
               "
               mat-menu-item
-              (click)="navigateTo(page.id)"
+              routerLink="/page/{{page.idid}}"
               *ngFor="let page of getPagesOfTag(tag.name)"
             >
               {{ page.title }}

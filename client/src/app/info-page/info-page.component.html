@@ -12,7 +12,7 @@
     <!-- set breakpoint at 640 -->
     <div class="page-info-right" *ngIf="innerWidth > 800">
       <h2>Categories</h2>
-      <p *ngFor="let page of pagesForCategories"> - {{ page.title }}</p>
+      <p *ngFor="let page of pagesForCategories"><a routerLink="/page/{{page.id}}"> - {{ page.title }}</a></p>
     </div>
   </div>
 
@@ -20,7 +20,7 @@
     <h1>Other topics</h1>
     <div class="other-topics-cards">
       <div class="other-topics-card" *ngFor="let page of pagesInOtherTopics">
-        <bnv-card [page]="page"></bnv-card>
+        <bnv-card routerLink="/page/{{page.id}}" [page]="page"></bnv-card>
       </div>
     </div>
   </div>

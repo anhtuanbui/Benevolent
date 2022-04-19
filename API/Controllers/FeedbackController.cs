@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using API.Core.Entities;
 using API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -72,6 +73,7 @@ namespace API.Controllers
         // POST: api/Feedback
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("Add")]
+        [AllowAnonymous]
         public async Task<ActionResult<Feedback>> AddFeedback(Feedback feedback)
         {
             _context.Feedback.Add(feedback);

@@ -62,15 +62,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   viewInKeenSlider: number = 3;
 
-  cards: string[] = [
-    'Translating services',
-    'Our commitment to your safety and wellbeing. ',
-    'Your right and responsibilities',
-    'Our Commitment to LGBTQI+ community ',
-    'Our Commitment to Aboriginal and Torres Strait Islander Peoples',
-    'Feedback and complaints',
-  ];
-
   pages: IPage[] = [];
 
   pagesLoaded?: Promise<boolean>;

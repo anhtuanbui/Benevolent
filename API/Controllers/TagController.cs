@@ -25,6 +25,7 @@ namespace API.Controllers
         }
 
         [HttpGet("list")]
+        [AllowAnonymous]
         public async Task<IActionResult> TagList()
         {
             return Ok(await _context.Tag!.ToListAsync());

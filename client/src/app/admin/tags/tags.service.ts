@@ -33,7 +33,15 @@ export class TagsService {
   getTags() {
     return this.http.get(this.baseUrl + 'tag/list').pipe(
       map((tags: any) => {
-        this.tagsSource.next(tags);
+        this.tagsSource.next(tags.sort((t1:any, t2:any) => {
+            if(t1.position > t2.position){
+              return 1;
+            }
+            if(t1.position < t2.position){
+              return -1;
+            }
+            return 0;
+          }));
         this.tags = this.tagsSource.value;
       })
     );
