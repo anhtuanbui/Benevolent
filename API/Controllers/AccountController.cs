@@ -30,6 +30,17 @@ namespace Server.Controllers
             _accountService = accountService;
         }
 
+        [HttpGet("IsAdmin")]
+        public ActionResult<bool> CheckAdmin()
+        {
+            return User.IsInRole("Admin");
+        }
+
+        [HttpGet("IsModOrAdmin")]
+        public ActionResult<bool> CheckModOrAdmin()
+        {
+            return User.IsInRole("Mod") || User.IsInRole("Admin");
+        }
 
         [HttpGet("CurrentUser")]
         public async Task<ActionResult<AuthUser>> CurrentUser()
@@ -54,13 +65,12 @@ namespace Server.Controllers
         [HttpPost("LoginWithToken")]
         public async Task<ActionResult<AuthUser>> LoginWithToken(Token token)
         {
-            Console.WriteLine("Debug Running");
             var authUser = await _accountService.ValidateJwtTokenAsync(token.MyToken);
 
             if (authUser == null)
                 return new AuthUser();
 
-            return authUser;
+            return Ok(authUser);
         }
 
         [HttpPost("Login")]
@@ -107,7 +117,7 @@ namespace Server.Controllers
 
             var authUser = await _accountService.GenerateAuthUserAsync(user);
 
-            return authUser;
+            return Ok(authUser);
         }
 
         [HttpPost("Register")]

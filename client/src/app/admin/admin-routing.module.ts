@@ -1,3 +1,5 @@
+import { AdminGuard } from './../shared/guards/admin.guard';
+import { ModOrAdminGuard } from './../shared/guards/modOrAdmin.guard';
 import { AuthGuard } from './../shared/guards/auth.guard';
 import { AssignRoleComponent } from './member/assign-role/assign-role.component';
 import { MemberComponent } from './member/member.component';
@@ -24,45 +26,45 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     children: [
-      { path: 'member', canActivate: [AuthGuard], component: MemberComponent },
+      { path: 'member', canActivate: [AuthGuard, AdminGuard], component: MemberComponent },
       {
         path: 'member/assign-role/:id',
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, AdminGuard],
         component: AssignRoleComponent,
       },
-      { path: 'role', canActivate: [AuthGuard], component: RoleComponent },
-      { path: 'role/add', canActivate: [AuthGuard], component: AddComponent },
+      { path: 'role', canActivate: [AuthGuard, AdminGuard], component: RoleComponent },
+      { path: 'role/add', canActivate: [AuthGuard, AdminGuard], component: AddComponent },
       {
         path: 'role/edit/:id',
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, AdminGuard],
         component: EditComponent,
       },
       {
         path: 'feedbacks',
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, ModOrAdminGuard],
         component: FeedbackComponent,
       },
       {
         path: 'feedback/detail/:id',
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, ModOrAdminGuard],
         component: DetailComponent,
       },
-      { path: 'pages', canActivate: [AuthGuard], component: PagesComponent },
-      { path: 'tags', canActivate: [AuthGuard], component: TagsComponent },
+      { path: 'pages', canActivate: [AuthGuard, ModOrAdminGuard], component: PagesComponent },
+      { path: 'tags', canActivate: [AuthGuard, ModOrAdminGuard], component: TagsComponent },
       {
         path: 'add-page',
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, ModOrAdminGuard],
         component: AddPageComponent,
       },
       {
         path: 'edit-page/:id',
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, ModOrAdminGuard],
         component: EditPageComponent,
       },
-      { path: 'add-tag', canActivate: [AuthGuard], component: AddTagComponent },
+      { path: 'add-tag', canActivate: [AuthGuard, ModOrAdminGuard], component: AddTagComponent },
       {
         path: 'edit-tag/:id',
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, ModOrAdminGuard],
         component: EditTagComponent,
       },
       { path: 'sign-in', component: SignInComponent },

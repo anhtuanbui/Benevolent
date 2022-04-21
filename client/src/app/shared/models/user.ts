@@ -3,6 +3,7 @@ export interface IUser {
   userName: string;
   email: string;
   token: string;
+  roles: string[];
 }
 
 export class User implements IUser {
@@ -10,4 +11,5 @@ export class User implements IUser {
   userName = '';
   email = '';
   token = '';
+  roles: string[] = [];
 }

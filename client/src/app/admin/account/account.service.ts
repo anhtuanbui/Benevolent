@@ -15,7 +15,18 @@ export class AccountService {
   private currentUserSource = new BehaviorSubject<IUser>(new User());
   currentUser$ = this.currentUserSource.asObservable();
 
+  private currentUserRolesSource = new BehaviorSubject<string[]>([]);
+  currentUserRoles$ = this.currentUserRolesSource.asObservable();
+
   constructor(private http: HttpClient, private router: Router) {}
+
+  checkAdmin(){
+    return this.http.get<boolean>(this.baseUrl + 'account/isadmin');
+  }
+
+  checkModOrAdmin(){
+    return this.http.get<boolean>(this.baseUrl + 'account/isModOrAdmin');
+  }
 
   getCurrentUserValue() {
     return this.currentUserSource.value;

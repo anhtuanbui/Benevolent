@@ -32,9 +32,16 @@ export class SignInComponent implements OnInit {
   onSubmit() {
     this.accountService.login(this.signInForm.value).subscribe(
       next => {
-        this.router.navigateByUrl(this.returnUrl);
+        let user = this.accountService.getCurrentUserValue();
+        if (user.roles.length > 0){
+          this.router.navigateByUrl(this.returnUrl);
+        }else{
+          this.router.navigateByUrl('/admin');
+        }
       },
-      err => this.errors = err.error.Errors
+      err => {
+        console.log(err)
+      }
     );
   }
 }

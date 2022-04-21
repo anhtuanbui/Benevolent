@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
+    [Authorize(Roles = "Admin, Mod")]
     [Route("api/[controller]")]
     [ApiController]
     public class FeedbackController : ControllerBase

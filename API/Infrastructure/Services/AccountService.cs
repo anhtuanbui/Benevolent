@@ -16,9 +16,11 @@ namespace API.Infrastructure.Services
         private readonly IConfiguration _config;
         private readonly AppIdentityDbContext _dbContext;
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<AppRole> _roleManager;
 
-        public AccountService(IConfiguration config, AppIdentityDbContext dbContext, UserManager<AppUser> userManager)
+        public AccountService(IConfiguration config, AppIdentityDbContext dbContext, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
+            _roleManager = roleManager;
             _userManager = userManager;
             _config = config;
             _dbContext = dbContext;
@@ -62,7 +64,7 @@ namespace API.Infrastructure.Services
 
             var isAuthenticated = true;
 
-            return await Task.FromResult(new AuthUser(user.UserName, user.Email, token, isAuthenticated));
+            return await Task.FromResult(new AuthUser(user.UserName, user.Email, token, isAuthenticated, roles));
         }
 
         public async Task<AuthUser> ValidateJwtTokenAsync(string token)
@@ -95,8 +97,9 @@ namespace API.Infrastructure.Services
                 return await Task.FromResult(new AuthUser());
 
             var isAuthenticated = true;
+            var roles = await _userManager.GetRolesAsync(user);
 
-            return await Task.FromResult(new AuthUser(user.UserName, user.Email, token, isAuthenticated));
+            return await Task.FromResult(new AuthUser(user.UserName, user.Email, token, isAuthenticated, roles));
 
         }
     }

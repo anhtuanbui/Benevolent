@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin, Mod")]
     [ApiController]
     [Route("api/[controller]")]
     public class TagController : ControllerBase
