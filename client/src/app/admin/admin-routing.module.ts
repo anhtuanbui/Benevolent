@@ -1,3 +1,4 @@
+import { ManageComponent } from './account/manage/manage.component';
 import { AdminGuard } from './../shared/guards/admin.guard';
 import { ModOrAdminGuard } from './../shared/guards/modOrAdmin.guard';
 import { AuthGuard } from './../shared/guards/auth.guard';
@@ -20,12 +21,15 @@ import { AdminComponent } from './admin.component';
 import { SignInComponent } from './account/sign-in/sign-in.component';
 import { SignUpComponent } from './account/sign-up/sign-up.component';
 import { AddComponent } from './role/add/add.component';
+import { FeedComponent } from './feed/feed.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
     children: [
+      { path: 'feed', component: FeedComponent },
+      { path: 'manage', canActivate: [AuthGuard], component: ManageComponent },
       { path: 'member', canActivate: [AuthGuard, AdminGuard], component: MemberComponent },
       {
         path: 'member/assign-role/:id',

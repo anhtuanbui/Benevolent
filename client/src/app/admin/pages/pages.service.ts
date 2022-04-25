@@ -39,7 +39,6 @@ export class PagesService {
         this.pagesImageSanitized.forEach((page) => {
           page.imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64, ' + page.imageUrl);
         })
-        // console.log(this.pagesImageSanitized);
       })
     );
   }

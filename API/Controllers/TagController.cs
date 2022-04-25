@@ -60,15 +60,13 @@ namespace API.Controllers
         {
             if (tag.Name.IsNullOrEmpty())
             {
-                ModelState.AddModelError("Errors", "Tag name is invalid");
-                return BadRequest(ModelState);
+                return BadRequest("Tag name is invalid");
             }
 
             var findTag = await _context.Tag!.FirstOrDefaultAsync(t => t.Id == id);
             if (findTag == null)
             {
-                ModelState.AddModelError("Errors", $"This tag {id} does not exist");
-                return BadRequest(ModelState);
+                return BadRequest($"This tag {id} does not exist");
             }
 
             try

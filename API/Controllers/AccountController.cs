@@ -30,6 +30,49 @@ namespace Server.Controllers
             _accountService = accountService;
         }
 
+        [HttpPost("ChangePassword")]
+        public async Task<IActionResult> ChangePassword(ChangePassword changePassword)
+        {
+            if (changePassword.CurrentPassword == null || changePassword.NewPassword == null || changePassword.ConfirmedNewPassword == null){
+                return BadRequest("Fields should not be empty");
+            }
+
+            if (changePassword.NewPassword != changePassword.ConfirmedNewPassword)
+            {
+                return BadRequest("Password confirmation is failed");
+            }
+
+            if (User?.Identity?.IsAuthenticated == false)
+            {
+                return Unauthorized("No current user logged in.");
+            }
+
+            var email = User.FindFirstValue(ClaimTypes.Email);
+
+            var currentUser = await _userManager.FindByEmailAsync(email);
+
+            if (currentUser == null)
+            {
+                return Unauthorized("Can't find this user email");
+            }
+
+            var checkPassword = await _userManager.CheckPasswordAsync(currentUser, changePassword.CurrentPassword);
+
+            if (!checkPassword)
+            {
+                return BadRequest("This current password is wrong");
+            }
+
+            var change = await _userManager.ChangePasswordAsync(currentUser, changePassword.CurrentPassword, changePassword.NewPassword);
+            if (!change.Succeeded){
+                return BadRequest("Can not change password, please try another password");
+            }
+
+            await _userManager.UpdateAsync(currentUser);
+
+            return Ok(await _accountService.GenerateAuthUserAsync(currentUser));
+        }
+
         [HttpGet("IsAdmin")]
         public ActionResult<bool> CheckAdmin()
         {
@@ -78,9 +121,7 @@ namespace Server.Controllers
         {
             if (login.Username == null || login.Password == null)
             {
-                var message = "Username and password fields are required to login";
-                ModelState.AddModelError("Errors", message);
-                return BadRequest(ModelState);
+                return BadRequest("Username and password fields are required to login");
             }
 
             string regex = "^(?![_.0-9])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
@@ -99,18 +140,14 @@ namespace Server.Controllers
 
             if (user == null)
             {
-                var message = "Invalid username or email";
-                ModelState.AddModelError("Errors", message);
-                return BadRequest(ModelState);
+                return BadRequest("Invalid username or email");
             }
 
             var loginResult = await _signInManager.CheckPasswordSignInAsync(user, login.Password, false);
 
             if (!loginResult.Succeeded)
             {
-                var message = "Invalid password";
-                ModelState.AddModelError("Errors", message);
-                return BadRequest(ModelState);
+                return BadRequest("Invalid password");
             }
 
             await _signInManager.SignInAsync(user, true);
@@ -123,20 +160,14 @@ namespace Server.Controllers
         [HttpPost("Register")]
         public async Task<ActionResult<AuthUser>> Register(Register register)
         {
-            string message = "";
-
             if (_context.Users.Any(u => u.UserName == register.UserName))
             {
-                message = $"The name {register.UserName} has been used.";
-                ModelState.AddModelError("Errors", message);
-                return BadRequest(ModelState);
+                return BadRequest($"The name {register.UserName} has been used.");
             }
 
             if (_context.Users.Any(u => u.Email == register.Email))
             {
-                message = $"Email {register.Email} has been used.";
-                ModelState.AddModelError("Errors", message);
-                return BadRequest(ModelState);
+                return BadRequest($"Email {register.Email} has been used.");
             }
 
             var user = new AppUser
@@ -149,9 +180,7 @@ namespace Server.Controllers
 
             if (!result.Succeeded)
             {
-                message = "Register failed";
-                ModelState.AddModelError("Errors", message);
-                return BadRequest(ModelState);
+                return BadRequest("Register failed");
             }
 
             return await Login(new Login

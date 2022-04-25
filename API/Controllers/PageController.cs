@@ -42,8 +42,7 @@ namespace API.Controllers
         {
             if (id == null)
             {
-                ModelState.AddModelError("Errors", "Id is missing");
-                return BadRequest(ModelState);
+                return BadRequest("Id is missing");
             }
 
             var page = await _context.Page!.FindAsync(id);
@@ -64,8 +63,7 @@ namespace API.Controllers
 
             if (user == null)
             {
-                ModelState.AddModelError("Errors", "User is not logged in");
-                return BadRequest(ModelState);
+                return BadRequest("User is not logged in");
             }
 
             var page = new Page
@@ -99,8 +97,7 @@ namespace API.Controllers
 
             if (user == null)
             {
-                ModelState.AddModelError("Errors", "User is not logged in");
-                return BadRequest(ModelState);
+                return Unauthorized("User is not logged in");
             }
 
             page.Title = pageDto.Title;

@@ -1,3 +1,4 @@
+import { IChangePassword } from './../../shared/models/changePassword';
 import { IToken, Token } from './../../shared/models/token';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -19,6 +20,10 @@ export class AccountService {
   currentUserRoles$ = this.currentUserRolesSource.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  changePassword(values:any){
+    return this.http.post<IChangePassword>(this.baseUrl + 'account/changepassword', values);
+  }
 
   checkAdmin(){
     return this.http.get<boolean>(this.baseUrl + 'account/isadmin');

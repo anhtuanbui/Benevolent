@@ -58,15 +58,13 @@ namespace API.Controllers
         {
             if (id == null)
             {
-                ModelState.AddModelError("Errors", "Can find this role");
-                return NotFound(ModelState);
+                return NotFound("Can find this role");
             }
             var user = await _context.Users.FindAsync(id);
 
             if (user == null)
             {
-                ModelState.AddModelError("Errors", "Can find this role");
-                return BadRequest(ModelState);
+                return BadRequest("Can find this role");
             }
             return Ok(user);
         }
@@ -123,15 +121,13 @@ namespace API.Controllers
         {
             if (id == null)
             {
-                ModelState.AddModelError("Errors", "Can find this role");
-                return NotFound(ModelState);
+                return NotFound("Can find this role");
             }
             var user = await _context.Users.FindAsync(id);
 
             if (user == null)
             {
-                ModelState.AddModelError("Errors", "Can find this role");
-                return BadRequest(ModelState);
+                return BadRequest("Can find this role");
             }
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();

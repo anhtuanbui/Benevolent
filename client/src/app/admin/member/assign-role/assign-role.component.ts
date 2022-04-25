@@ -53,7 +53,6 @@ export class AssignRoleComponent implements OnInit {
   onSubmit() {
     this.assignRole.memberId = this.route.snapshot.params['id'];
     this.assignRole.roleId = this.assignRoleForm.value.roleId;
-    // console.log(this.assignRole);
     this.memberService.assignRole(this.assignRole).subscribe(() => {
       this.router.navigateByUrl('/admin/member');
     });
@@ -62,7 +61,6 @@ export class AssignRoleComponent implements OnInit {
   onRemoveRole(){
     this.assignRole.memberId = this.route.snapshot.params['id'];
     this.assignRole.roleId = this.assignRoleForm.value.roleId;
-    // console.log(this.assignRole);
     this.memberService.removeRole(this.assignRole).subscribe(() => {
       this.router.navigateByUrl('/admin/member');
     });

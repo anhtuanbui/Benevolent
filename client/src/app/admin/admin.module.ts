@@ -23,6 +23,8 @@ import { AddComponent } from './role/add/add.component';
 import { EditComponent } from './role/edit/edit.component';
 import { MemberComponent } from './member/member.component';
 import { AssignRoleComponent } from './member/assign-role/assign-role.component';
+import { ManageComponent } from './account/manage/manage.component';
+import { FeedComponent } from './feed/feed.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { AssignRoleComponent } from './member/assign-role/assign-role.component'
     EditComponent,
     MemberComponent,
     AssignRoleComponent,
+    ManageComponent,
+    FeedComponent,
   ],
   imports: [
     CommonModule,

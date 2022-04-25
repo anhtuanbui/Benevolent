@@ -1,3 +1,4 @@
+import { ErrorInterceptor } from './extensions/error.interceptor';
 import { JwtInterceptor } from './extensions/jwt.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
@@ -21,6 +22,7 @@ import { SendFeedbackSuccessComponent } from './send-feedback-success/send-feedb
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

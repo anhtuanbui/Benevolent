@@ -177,6 +177,16 @@ p {
 .inline-block {
   display: inline-block;
 }
+
+.snackbar {
+  background-color: $orange-tint;
+  color: black;
+}
+
+.snackbar-success {
+  background-color: $green;
+  color: black;
+}
 // End style from pages
 
 @media (max-width: 1340px) {

@@ -33,8 +33,7 @@ namespace API.Controllers
             
             if (roleExist)
             {
-                ModelState.AddModelError("Errors", "This role existed");
-                return BadRequest(ModelState);
+                return BadRequest("This role existed");
             }
 
             var appRole = new AppRole { Name = role.Name!.Trim() };
@@ -46,14 +45,12 @@ namespace API.Controllers
         public async Task<IActionResult> EditRole(string? id , Role role)
         {
             if (id == null){
-                ModelState.AddModelError("Errors", "Can find this role");
-                return NotFound(ModelState);
+                return NotFound("Can find this role");
             }
             var appRole = await _context.Roles.FindAsync(id);
 
             if (appRole == null) {
-                ModelState.AddModelError("Errors", "Can find this role");
-                return BadRequest(ModelState);
+                return NotFound("Can find this role");
             }
 
             appRole.Name = role.Name;
@@ -71,14 +68,12 @@ namespace API.Controllers
         public async Task<IActionResult> GetRole(string? id)
         {
             if (id == null){
-                ModelState.AddModelError("Errors", "Can find this role");
-                return NotFound(ModelState);
+                return NotFound("Can find this role");
             }
             var role = await _context.Roles.FindAsync(id);
 
             if (role == null) {
-                ModelState.AddModelError("Errors", "Can find this role");
-                return BadRequest(ModelState);
+                return BadRequest("Can find this role");
             }
             return Ok(role);
         }
@@ -87,14 +82,12 @@ namespace API.Controllers
         public async Task<IActionResult> DeleteRole(string? id)
         {
             if (id == null){
-                ModelState.AddModelError("Errors", "Can find this role");
-                return NotFound(ModelState);
+                return NotFound("Can find this role");
             }
             var role = await _context.Roles.FindAsync(id);
 
             if (role == null) {
-                ModelState.AddModelError("Errors", "Can find this role");
-                return BadRequest(ModelState);
+                return BadRequest("Can find this role");
             }
             _context.Roles.Remove(role);
             await _context.SaveChangesAsync();

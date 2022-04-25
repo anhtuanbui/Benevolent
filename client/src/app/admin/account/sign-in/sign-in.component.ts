@@ -10,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SignInComponent implements OnInit {
   signInForm!: FormGroup;
-  errors: any;
+  error: any;
   returnUrl:string = '';
 
   response = new Observable();
@@ -40,7 +40,8 @@ export class SignInComponent implements OnInit {
         }
       },
       err => {
-        console.log(err)
+        this.error = err.error;
+        
       }
     );
   }

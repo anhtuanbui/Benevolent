@@ -29,7 +29,6 @@ export class SignUpComponent implements OnInit {
   onSubmit() {
     this.accountService.register(this.signUpForm.value).subscribe(
       next => {},
-      err => this.errors = err.error.Errors
     );
   }
 
