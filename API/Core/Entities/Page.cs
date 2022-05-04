@@ -9,7 +9,7 @@ namespace API.Core.Entities
     {
         public string? Title { get; set; }
         public string? ImageUrl { get; set; }
-        public DateTime CreatedTime { get; set; } = DateTime.Now;
+        public DateTimeOffset CreatedTime { get; set; } = DateTime.Now;
         public string? Content { get; set; }
         public bool IsPublic { get; set; }
         public string? AppUserId { get; set; }

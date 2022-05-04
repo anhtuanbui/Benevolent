@@ -6,33 +6,7 @@
         "content": "<p>If English is not your first language, you can have an interpreter.</p><p>You can do this by</p><p>- Calling our Support Centre in 180 236 762, and ask for an interpreter,<br>- Call ‘TIS’ (Translating and Interpreting service) on 131 450 and they can put you through to us.</p>",
         "isPublic": true,
         "appUserId": "41aabb4f-7629-4e07-a70c-6ad65f10d990",
-        "appUser": {
-            "firstName": null,
-            "lastName": null,
-            "address": null,
-            "dateOfBirth": "0001-01-01T00:00:00",
-            "id": "41aabb4f-7629-4e07-a70c-6ad65f10d990",
-            "userName": "user",
-            "normalizedUserName": "USER",
-            "email": "test@test.com",
-            "normalizedEmail": "TEST@TEST.COM",
-            "emailConfirmed": false,
-            "passwordHash": "AQAAAAEAACcQAAAAENzRsEehER7tLJIMoyzA6qlT0jBHrD9/ClvzcOvqzNLbu/CVR4Jkq3/Ja9j8/yrcvw==",
-            "securityStamp": "M3BVOK7GN2UYEHFEJOPXAVAQRWUGIOKA",
-            "concurrencyStamp": "aef328a2-9207-4668-a2f7-118a79ae87d5",
-            "phoneNumber": null,
-            "phoneNumberConfirmed": false,
-            "twoFactorEnabled": false,
-            "lockoutEnd": null,
-            "lockoutEnabled": true,
-            "accessFailedCount": 0
-        },
         "tagId": 1,
-        "tag": {
-            "name": "Services",
-            "position": 1,
-            "id": 1
-        },
         "id": 1
     },
     {
@@ -42,33 +16,7 @@
         "content": "<p>At the Benevolent Society, we want you to feel safe at all times.&nbsp;<br>It is our job to help you feel happy, comfortable and safe. We will do our best to help you if you do not feel those things.<br>If you do not feel safe, it is important to <strong>speak up</strong> &nbsp;and let us know by clicking here.&nbsp;<br><strong>Speaking up</strong> &nbsp;is a good and brave thing to do!<br>Please talk to us in the <strong>contact form</strong> or call 1800 236 762, or speak to a staff member.&nbsp;<br>&nbsp;</p>",
         "isPublic": true,
         "appUserId": "41aabb4f-7629-4e07-a70c-6ad65f10d990",
-        "appUser": {
-            "firstName": null,
-            "lastName": null,
-            "address": null,
-            "dateOfBirth": "0001-01-01T00:00:00",
-            "id": "41aabb4f-7629-4e07-a70c-6ad65f10d990",
-            "userName": "user",
-            "normalizedUserName": "USER",
-            "email": "test@test.com",
-            "normalizedEmail": "TEST@TEST.COM",
-            "emailConfirmed": false,
-            "passwordHash": "AQAAAAEAACcQAAAAENzRsEehER7tLJIMoyzA6qlT0jBHrD9/ClvzcOvqzNLbu/CVR4Jkq3/Ja9j8/yrcvw==",
-            "securityStamp": "M3BVOK7GN2UYEHFEJOPXAVAQRWUGIOKA",
-            "concurrencyStamp": "aef328a2-9207-4668-a2f7-118a79ae87d5",
-            "phoneNumber": null,
-            "phoneNumberConfirmed": false,
-            "twoFactorEnabled": false,
-            "lockoutEnd": null,
-            "lockoutEnabled": true,
-            "accessFailedCount": 0
-        },
         "tagId": 2,
-        "tag": {
-            "name": "What we do",
-            "position": 2,
-            "id": 2
-        },
         "id": 3
     },
     {
@@ -78,33 +26,7 @@
         "content": "<p>We work hard to make sure that Aboriginal and Torres Strait Islander peoples feel safe at the Benevolent Society.&nbsp;</p><p>We want to connect with Aboriginal and Torres Strait Islander people and want all people to feel valued, respected and welcomed.&nbsp;</p><p>We value Aboriginal and Torres Strait Islander cultural knowledge and will listen to Aboriginal and Torres Strait Islander people and communities and will walk alongside you in your own journey.&nbsp;</p><p>If you ever feel that you are being culturally disrespected, it is important that you click <a href=\"http://localhost:4200/#contact\"><strong>here</strong>&nbsp;</a>to tell us as soon as you can.&nbsp;</p>",
         "isPublic": true,
         "appUserId": "41aabb4f-7629-4e07-a70c-6ad65f10d990",
-        "appUser": {
-            "firstName": null,
-            "lastName": null,
-            "address": null,
-            "dateOfBirth": "0001-01-01T00:00:00",
-            "id": "41aabb4f-7629-4e07-a70c-6ad65f10d990",
-            "userName": "user",
-            "normalizedUserName": "USER",
-            "email": "test@test.com",
-            "normalizedEmail": "TEST@TEST.COM",
-            "emailConfirmed": false,
-            "passwordHash": "AQAAAAEAACcQAAAAENzRsEehER7tLJIMoyzA6qlT0jBHrD9/ClvzcOvqzNLbu/CVR4Jkq3/Ja9j8/yrcvw==",
-            "securityStamp": "M3BVOK7GN2UYEHFEJOPXAVAQRWUGIOKA",
-            "concurrencyStamp": "aef328a2-9207-4668-a2f7-118a79ae87d5",
-            "phoneNumber": null,
-            "phoneNumberConfirmed": false,
-            "twoFactorEnabled": false,
-            "lockoutEnd": null,
-            "lockoutEnabled": true,
-            "accessFailedCount": 0
-        },
         "tagId": 2,
-        "tag": {
-            "name": "What we do",
-            "position": 2,
-            "id": 2
-        },
         "id": 4
     },
     {
@@ -114,33 +36,7 @@
         "content": "<p>At The Benevolent Society, we work hard to make sure that everyone gets the best service possible from us, that they feel safe, valued and respected, that includes sexually and gender diverse people. &nbsp;</p><p>We welcome everyone, Lesbian, Gay, Bisexual, Transgender, Non- binary, Intersex, Queer, Asexual, Pansexual (LGBTIQAP+), Sistergirl and Brotherboy. No matter how you identify, The Benevolent Society believes everyone deserves to be treated with respect and dignity at all times.</p><p>We hope that you feel comfortable being yourself at The Benevolent Society. If you ever feel that you aren’t being respected, it is important that you <strong>speak up</strong> &nbsp;) and let us know.&nbsp;</p>",
         "isPublic": true,
         "appUserId": "41aabb4f-7629-4e07-a70c-6ad65f10d990",
-        "appUser": {
-            "firstName": null,
-            "lastName": null,
-            "address": null,
-            "dateOfBirth": "0001-01-01T00:00:00",
-            "id": "41aabb4f-7629-4e07-a70c-6ad65f10d990",
-            "userName": "user",
-            "normalizedUserName": "USER",
-            "email": "test@test.com",
-            "normalizedEmail": "TEST@TEST.COM",
-            "emailConfirmed": false,
-            "passwordHash": "AQAAAAEAACcQAAAAENzRsEehER7tLJIMoyzA6qlT0jBHrD9/ClvzcOvqzNLbu/CVR4Jkq3/Ja9j8/yrcvw==",
-            "securityStamp": "M3BVOK7GN2UYEHFEJOPXAVAQRWUGIOKA",
-            "concurrencyStamp": "aef328a2-9207-4668-a2f7-118a79ae87d5",
-            "phoneNumber": null,
-            "phoneNumberConfirmed": false,
-            "twoFactorEnabled": false,
-            "lockoutEnd": null,
-            "lockoutEnabled": true,
-            "accessFailedCount": 0
-        },
         "tagId": 2,
-        "tag": {
-            "name": "What we do",
-            "position": 2,
-            "id": 2
-        },
         "id": 5
     },
     {
@@ -150,33 +46,7 @@
         "content": "<p>At the Benevolent Society, we work hard to make sure everyone feels safe, valued and respected, that includes people who are Culturally and Linguistically diverse.&nbsp;</p><p>We welcome everyone, including people who come from immigrant and refugee backgrounds.</p><p>If you ever feel that your cultural history and experiences are not being respected, it is important that you click here to <a href=\"http://localhost:4200/#contact\"><strong>tell us</strong></a>&nbsp;so that we can help.&nbsp;</p>",
         "isPublic": true,
         "appUserId": "41aabb4f-7629-4e07-a70c-6ad65f10d990",
-        "appUser": {
-            "firstName": null,
-            "lastName": null,
-            "address": null,
-            "dateOfBirth": "0001-01-01T00:00:00",
-            "id": "41aabb4f-7629-4e07-a70c-6ad65f10d990",
-            "userName": "user",
-            "normalizedUserName": "USER",
-            "email": "test@test.com",
-            "normalizedEmail": "TEST@TEST.COM",
-            "emailConfirmed": false,
-            "passwordHash": "AQAAAAEAACcQAAAAENzRsEehER7tLJIMoyzA6qlT0jBHrD9/ClvzcOvqzNLbu/CVR4Jkq3/Ja9j8/yrcvw==",
-            "securityStamp": "M3BVOK7GN2UYEHFEJOPXAVAQRWUGIOKA",
-            "concurrencyStamp": "aef328a2-9207-4668-a2f7-118a79ae87d5",
-            "phoneNumber": null,
-            "phoneNumberConfirmed": false,
-            "twoFactorEnabled": false,
-            "lockoutEnd": null,
-            "lockoutEnabled": true,
-            "accessFailedCount": 0
-        },
         "tagId": 2,
-        "tag": {
-            "name": "What we do",
-            "position": 2,
-            "id": 2
-        },
         "id": 6
     }
 ]

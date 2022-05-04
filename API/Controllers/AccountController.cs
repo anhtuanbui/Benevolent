@@ -132,6 +132,7 @@ namespace Server.Controllers
             if (match.Success)
             {
                 user = await _userManager.FindByNameAsync(login.Username);
+                Console.WriteLine("Debug this: " + user);
             }
             else if (!match.Success)
             {

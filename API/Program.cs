@@ -19,10 +19,17 @@ builder.Services.AddCors(opt =>
     });
 });
 
+// builder.Services.AddDbContext<AppIdentityDbContext>(options =>
+// {
+//     {
+//         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+//     };
+// });
+
 builder.Services.AddDbContext<AppIdentityDbContext>(options =>
 {
     {
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+        options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
     };
 });
 
