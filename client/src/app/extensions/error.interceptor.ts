@@ -30,7 +30,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             this.showSnackBar(`Server error (${error.status})`);
           }
         }
-        return throwError(error);
+        return throwError(() => console.log(error));
       })
     );
   }
