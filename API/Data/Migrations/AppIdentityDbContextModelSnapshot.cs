@@ -51,7 +51,7 @@ namespace API.Data.Migrations
                         new
                         {
                             Id = "4bc5e834-b107-4abd-8fa9-3fa758b0d3aa",
-                            ConcurrencyStamp = "c0c9d588-b461-4918-9298-e877d8f46c93",
+                            ConcurrencyStamp = "75f85ecb-c409-479e-8b7d-5dbd2f78f7c5",
                             Name = "Admin"
                         });
                 });
@@ -136,16 +136,16 @@ namespace API.Data.Migrations
                         {
                             Id = "41aabb4f-7629-4e07-a70c-6ad65f10d990",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "285a9cc6-39c6-42fe-a69e-a7adb60471d6",
+                            ConcurrencyStamp = "4f314465-266a-415f-8872-13daa475a2c2",
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@seedadmin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@SEEDADMIN.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEF00uVMUp6vtuyEQKscc/mdcJshyhZSsvuCoaZSu/+C9RAbAXMgQItQ9XIN8y0ldYg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPaiDFQWzZipzokSeCatLyUIj/E4CJmjZfyDC4VAXjZmLKBk6PIfDRzDQjGXjLmU1Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "58fd2f55-25f9-4a3c-b002-3e72f0f5e5a6",
+                            SecurityStamp = "d53559e3-a982-4d8a-9b79-6b047dbcc441",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
