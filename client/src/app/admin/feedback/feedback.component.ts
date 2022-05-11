@@ -17,6 +17,7 @@ export class FeedbackComponent implements OnInit {
   getFeedbacks() {
     this.feedbackService.getFeedbacks().subscribe(()=>{
       this.feedbacks = this.feedbackService.feedbacks;
+      console.log(this.feedbacks);
     })
   }
 
