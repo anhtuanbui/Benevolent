@@ -3,6 +3,7 @@
 # Files in API
 obj
 bin
+*.yml
 
 # Compiled output
 /dist
