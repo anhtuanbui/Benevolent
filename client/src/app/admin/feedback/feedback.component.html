@@ -22,7 +22,7 @@
       <td>{{ feedback.phoneNumber }}</td>
       <td>{{ feedback.email }}</td>
       <td>{{ feedback.surburb }}</td>
-      <td>{{ feedback.timeToCall }}</td>
+      <td>{{ feedback.timeToCall | date:'medium' }}</td>
       <td style="text-align: left"><div class="content-text">{{ feedback.message }}</div></td>
       <td>{{ feedback.receivedTime | date: "medium" }}</td>
       <td>

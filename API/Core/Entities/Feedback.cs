@@ -13,7 +13,7 @@ namespace API.Core.Entities
         public string? Surburb { get; set; }
         public string? TimeToCall { get; set; }
         public string? Message { get; set; }
-        public DateTimeOffset ReceivedTime { get; set; } = DateTime.Now;
+        public DateTimeOffset ReceivedTime { get; set; } = DateTimeOffset.Now.ToOffset(TimeSpan.Zero);
         public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }
     }

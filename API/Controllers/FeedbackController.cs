@@ -77,6 +77,7 @@ namespace API.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<Feedback>> AddFeedback(Feedback feedback)
         {
+            Console.WriteLine("Debug this: " + feedback.ReceivedTime);
             _context.Feedback.Add(feedback);
             await _context.SaveChangesAsync();
 
