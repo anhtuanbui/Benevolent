@@ -44,7 +44,7 @@
         <button mat-menu-item>
           <a class="full-hw" [routerLink]="['']">Home</a>
         </button>
-        <ng-container *ngFor="let tag of tags">
+        <ng-container *ngFor="let tag of (tags | async)">
           <button mat-menu-item [matMenuTriggerFor]="menu">
             {{ tag.name }}
           </button>

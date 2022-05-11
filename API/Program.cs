@@ -93,12 +93,34 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+app.UseStaticFiles();
+
 app.UseCors("CorsPolicy");
 
 app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapFallbackToController("Index", "Fallback");
+});
+
+// app.MapControllers();
+
+//seed data at startup
+using(var scope = app.Services.CreateScope()){
+    var services = scope.ServiceProvider;
+    var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+    try {
+        var context = services.GetRequiredService<AppIdentityDbContext>();
+        await context.Database.MigrateAsync();
+    }catch (Exception ex){
+        var logger = loggerFactory.CreateLogger<Program>();
+        logger.LogError(ex, "An error occured durring migration");
+    }
+}
 
 app.Run();

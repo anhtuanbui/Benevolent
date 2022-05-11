@@ -1,7 +1,8 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { PagesService } from './../admin/pages/pages.service';
 import { Router } from '@angular/router';
 import { FeedbackService } from './../admin/feedback/feedback.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 // using swiper js && keen slider
 // documentation https://swiperjs.com/angular
 
@@ -71,7 +72,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private feedbackService: FeedbackService,
     private router: Router,
-    private pagesService: PagesService
+    private pagesService: PagesService,
+    private snackbar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.getPages();
@@ -97,7 +99,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   createFeedbackForm() {
     this.feedbackForm = new FormGroup({
-      fullName: new FormControl(''),
+      fullName: new FormControl('', Validators.required),
       phoneNumber: new FormControl(''),
       email: new FormControl(''),
       surburb: new FormControl(''),
@@ -114,7 +116,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onFeedbackSubmit() {
-    this.sendFeedback(this.feedbackForm.value);
+    if(this.feedbackForm.get('fullName')?.value){
+      this.sendFeedback(this.feedbackForm.value);
+    }else{
+      this.snackbar.open('Name is required.', 'Close', {duration:5000});
+    }
   }
 
   addMatchHeight() {
